@@ -1,0 +1,26 @@
+---
+- name: Prepare control node
+  hosts: [all]
+  tasks:
+  - name: Install epel
+    yum:
+      name: [ epel-release, yum-utils ]
+      state: latest
+  - name: Add hashicorp repository
+    shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    args:
+      creates: /etc/yum.repos.d/hashicorp.repo
+
+  - name: Install packages
+    yum:
+      name: [ ansible, git , terraform ]
+      state: latest
+  - name: Fetch project repository
+    git:
+      repo: 'https://github.com/Qutianer/dev-sch.git'
+      dest: /root/school
+  - name: Copy credentials for terraform
+    copy:
+      src: ./terraform.tfvars.tmpl
+      dest: /root/school/terraform.tfvars
+

@@ -1,0 +1,17 @@
+output "subscription_id" {
+	value = data.azurerm_subscription.primary.subscription_id
+}
+
+output "tenant_id" {
+	value = data.azurerm_subscription.primary.tenant_id
+}
+
+output "client_id" {
+	value = azuread_application.control.application_id
+}
+
+output "client_secret" {
+	value = azuread_application_password.control.value
+	sensitive = true
+}
+
