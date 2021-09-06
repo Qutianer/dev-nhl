@@ -7,44 +7,31 @@ terraform {
   }
 }
 
-variable "region" {
-	default = ""
-	description = "Region to use"
-}
-
 provider "azurerm" {
 	features {}
+	subscription_id = var.subscription_id
+	tenant_id = var.tenant_id
+	client_id = var.client_id
+	client_secret = var.client_secret
 }
 
-resource "azurerm_resource_group" "main" {
+data "azurerm_resource_group" "main" {
   name     = "main"
-  location = "North Europe"
 }
 
-resource "azurerm_virtual_network" "main" {
+data "azurerm_virtual_network" "main" {
   name                = "main"
-  address_space       = ["192.168.0.0/16"]
-  location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 }
 
-resource "azurerm_subnet" "main" {
+data "azurerm_subnet" "main" {
   name                 = "internal"
   resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = ["192.168.0.0/24"]
 }
 
-resource "azurerm_public_ip" "main" {
-  name                    = "pubip"
-  location                = azurerm_resource_group.main.location
-  resource_group_name     = azurerm_resource_group.main.name
-  allocation_method       = "Dynamic"
-  idle_timeout_in_minutes = 30
-}
-
-resource "azurerm_network_interface" "main" {
-  name                = "main"
+resource "azurerm_network_interface" "k8s-node" {
+  name                = "k8s-node"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -52,7 +39,6 @@ resource "azurerm_network_interface" "main" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.main.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id	  = azurerm_public_ip.main.id
   }
 }
 
@@ -64,7 +50,7 @@ resource "azurerm_linux_virtual_machine" "k8s-node" {
   admin_username      = "adminuser"
   count               = 1
   network_interface_ids = [
-    azurerm_network_interface.main.id,
+    azurerm_network_interface.k8s-node.id,
   ]
   admin_ssh_key {
     username   = "adminuser"

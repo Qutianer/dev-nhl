@@ -22,5 +22,12 @@
   - name: Copy credentials for terraform
     copy:
       src: ./terraform.tfvars.tmpl
-      dest: /root/school/terraform.tfvars
-
+      dest: /root/school/infrastructure/terraform.tfvars
+  - name: Create dir for ssh
+    file:
+      path: /root/.ssh/
+      state: directory
+      mode: 700
+  - name: Generate ssh keys
+    openssh_keypair:
+      path: /root/.ssh/id_rsa

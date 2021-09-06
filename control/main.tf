@@ -42,8 +42,8 @@ resource "azurerm_public_ip" "main" {
   idle_timeout_in_minutes = 30
 }
 
-resource "azurerm_network_interface" "main" {
-  name                = "main"
+resource "azurerm_network_interface" "control" {
+  name                = "control"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -62,7 +62,7 @@ resource "azurerm_linux_virtual_machine" "control" {
   size                = "Standard_B1s"
   admin_username      = "adminuser"
   network_interface_ids = [
-    azurerm_network_interface.main.id,
+    azurerm_network_interface.control.id,
   ]
   admin_ssh_key {
     username   = "adminuser"
