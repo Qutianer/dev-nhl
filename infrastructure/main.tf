@@ -21,31 +21,31 @@ data "azurerm_resource_group" "main" {
 
 data "azurerm_virtual_network" "main" {
   name                = "main"
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = data.azurerm_resource_group.main.name
 }
 
 data "azurerm_subnet" "main" {
   name                 = "internal"
-  resource_group_name  = azurerm_resource_group.main.name
-  virtual_network_name = azurerm_virtual_network.main.name
+  resource_group_name  = data.azurerm_resource_group.main.name
+  virtual_network_name = data.azurerm_virtual_network.main.name
 }
 
 resource "azurerm_network_interface" "k8s-node" {
   name                = "k8s-node"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = data.azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.main.id
+    subnet_id                     = data.azurerm_subnet.main.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
 resource "azurerm_linux_virtual_machine" "k8s-node" {
   name                = "k8s-node"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  resource_group_name = data.azurerm_resource_group.main.name
+  location            = data.azurerm_resource_group.main.location
   size                = "Standard_B1s"
   admin_username      = "adminuser"
   count               = 1
