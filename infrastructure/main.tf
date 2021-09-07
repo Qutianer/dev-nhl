@@ -43,12 +43,11 @@ resource "azurerm_network_interface" "k8s-node" {
 }
 
 resource "azurerm_linux_virtual_machine" "k8s-node" {
-  name                = "k8s-node"
   resource_group_name = data.azurerm_resource_group.main.name
   location            = data.azurerm_resource_group.main.location
   size                = "Standard_B1s"
   admin_username      = "adminuser"
-  count               = 1
+  count               = 2
   network_interface_ids = [
     azurerm_network_interface.k8s-node.id,
   ]
@@ -70,5 +69,6 @@ resource "azurerm_linux_virtual_machine" "k8s-node" {
   }
   tags = {
     app="k8s_node"
+    name"k8s-node-${count.index}"
   }
 }
