@@ -1,0 +1,31 @@
+---
+- name: Prepare infrastructure
+  hosts: localhost
+  connection: local
+  vars:
+    containers: [ nginx, mcr.microsoft.com/azuredocs/azure-vote-front ]
+  vars_files:
+    - ansible.cred
+  tasks:
+  - name: Install epel
+    yum:
+      name: python-docker-py
+      state: latest
+  - name: Log into private registry and force re-authorization
+    docker_login:
+      registry: "{{ acr_url }}"
+      username: "{{ client_id }}"
+      password: "{{ client_secret }}"
+  - name: Pull nginx
+    docker_image:
+      name: "{{ item }}"
+      source: pull
+    with_item: "{{containers}}"
+  - name: Tag and push to private repo
+    docker_image:
+      name: "{{ item }}"
+      repository: "{{ acr_url }}/{{ item | basename }}-my"
+      push: yes
+      source: local
+    with_item: 
+

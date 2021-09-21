@@ -10,24 +10,40 @@
     shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
     args:
       creates: /etc/yum.repos.d/hashicorp.repo
+  - name: Add docker-ce repository
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
 
   - name: Install packages
     yum:
-      name: [ ansible, git , terraform ]
+      name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io] #  git 
       state: latest
-  - name: Fetch project repository
-    git:
-      repo: 'https://github.com/Qutianer/dev-sch.git'
-      dest: /root/school
+#  - name: Create dir for infrastructure
+#    file:
+#      path: /root/school/infrastructure
+#      state: directory
+#      mode: '770'
+  - name: Start docker
+    service:
+      name: docker
+      state: started
+      enabled: yes
+  - name: Download last infrastructure config
+    unarchive:
+      src: https://github.com/Qutianer/dev-sch/releases/latest/download/infrastructure.tar.gz
+      dest: /root
+      remote_src: yes
   - name: Copy credentials for terraform
     copy:
-      src: ./terraform.tfvars.tmpl
-      dest: /root/school/infrastructure/terraform.tfvars
+      src: ./terraform.cred
+      dest: /root/terraform.tfvars
+
   - name: Create dir for ssh
     file:
       path: /root/.ssh/
       state: directory
-      mode: 700
+      mode: '700'
   - name: Generate ssh keys
     openssh_keypair:
       path: /root/.ssh/id_rsa

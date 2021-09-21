@@ -1,15 +1,17 @@
-output "k8s_ip_addr" {
-  value = azurerm_linux_virtual_machine.k8s-node[*].private_ip_address
+output "acr_name" {
+  value = azurerm_container_registry.acr.login_server
 }
 
-resource "local_file" "inventory" {
- content = <<-EOC
-	[control]
-	%{ for ip in ${azurerm_linux_virtual_machine.k8s-node[*].private_ip_address} ~}
-	${ip}
-	%{ endfor ~}
-	
-EOC
 
- filename = "inventory"
+resource "local_file" "secrets" {
+ content = <<-EOT
+	subscription_id: "${var.subscription_id}"
+	tenant_id: "${var.tenant_id}"
+	client_id: "${var.client_id}"
+	client_secret: "${var.client_secret}"
+	acr_url: "${azurerm_container_registry.acr.login_server}"
+	dbpass: "${random_password.dbserver_password.result}"
+EOT
+ filename = "secrets.cred"
 }
+
