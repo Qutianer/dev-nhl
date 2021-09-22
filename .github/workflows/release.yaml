@@ -1,0 +1,34 @@
+name: Create Archive
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      #    - name: Archive Release
+      #      uses: thedoctor0/zip-release@master
+      #      with:
+      #        type: 'tar'
+      #        filename: 'release.tar.gz'
+      #        exclusions: '*.git*'
+    - name: Archive release
+      run: |
+        pushd control
+        tar -caf ../control.tar.gz --exclude-vcs --exclude-vcs-ignores *
+        popd
+        pushd infrastructure
+        tar -caf ../infrastructure.tar.gz --exclude-vcs --exclude-vcs-ignores *
+        popd
+    - uses: actions/upload-artifact@v2
+      with:
+        path: |
+          control.tar.gz
+          infrastructure.tar.gz
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "control.tar.gz,infrastructure.tar.gz"
+        token: ${{ secrets.GITHUB_TOKEN }}
