@@ -3,11 +3,11 @@
   hosts: localhost
   connection: local
   vars:
-    containers: [ nginx, mcr.microsoft.com/azuredocs/azure-vote-front ]
+    containers: [ nginx ]
   vars_files:
-    - ansible.cred
+    - secrets.cred
   tasks:
-  - name: Install epel
+  - name: Install docker module for ansible
     yum:
       name: python-docker-py
       state: latest
@@ -20,12 +20,12 @@
     docker_image:
       name: "{{ item }}"
       source: pull
-    with_item: "{{containers}}"
+    with_items: "{{containers}}"
   - name: Tag and push to private repo
     docker_image:
       name: "{{ item }}"
       repository: "{{ acr_url }}/{{ item | basename }}-my"
       push: yes
       source: local
-    with_item: 
+    with_items: "{{containers}}"
 

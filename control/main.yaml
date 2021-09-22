@@ -14,10 +14,19 @@
     get_url:
       url: https://download.docker.com/linux/centos/docker-ce.repo
       dest: /etc/yum.repos.d/docker-ce.repo
-
+- name: Add kubectl repository
+  yum_repository:
+    name: Kubernetes
+    description: Google k8s repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    repo_gpgcheck: yes
+    gpgcheck: yes
+    gpgkey:
+      - https://packages.cloud.google.com/yum/doc/yum-key.gpg
+      - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
   - name: Install packages
     yum:
-      name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io] #  git 
+      name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io, kubectl] #  git 
       state: latest
 #  - name: Create dir for infrastructure
 #    file:
