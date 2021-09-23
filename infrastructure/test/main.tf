@@ -1,1 +1,1 @@
-../main.tf
+../lib/main.tf
