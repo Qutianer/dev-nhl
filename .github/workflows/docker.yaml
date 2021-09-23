@@ -19,6 +19,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./cicd
+          context: cicd
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/azureagent:latest
