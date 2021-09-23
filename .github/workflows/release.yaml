@@ -1,4 +1,4 @@
-name: Create Archive
+name: Create release with archives
 on:
   push:
     tags:
@@ -22,12 +22,13 @@ jobs:
         pushd infrastructure
         tar -caf ../infrastructure.tar.gz --exclude-vcs --exclude-vcs-ignores *
         popd
-    - uses: actions/upload-artifact@v2
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
       with:
         path: |
           control.tar.gz
           infrastructure.tar.gz
-    - name: Upload Release
+    - name: Create release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "control.tar.gz,infrastructure.tar.gz"
