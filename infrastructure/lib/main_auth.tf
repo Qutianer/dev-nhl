@@ -15,7 +15,8 @@ provider "azurerm" {
 	client_secret = var.client_secret
 }
 
-data "azurerm_resource_group" "main" {
+resource "azurerm_resource_group" "main" {
   name     = "main"
+  location = "North Europe"
 }
 

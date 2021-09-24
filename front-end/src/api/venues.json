@@ -1,0 +1,218 @@
+[
+  {
+    "venue_id": "5046",
+    "city": "Anaheim",
+    "name": "Honda Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5085",
+    "city": "Boston",
+    "name": "TD Garden",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5039",
+    "city": "Buffalo",
+    "name": "KeyBank Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5075",
+    "city": "Calgary",
+    "name": "Scotiabank Saddledome",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "5092",
+    "city": "Chicago",
+    "name": "United Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5059",
+    "city": "Columbus",
+    "name": "Nationwide Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5019",
+    "city": "Dallas",
+    "name": "American Airlines Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5064",
+    "city": "Denver",
+    "name": "Ball Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5145",
+    "city": "Detroit",
+    "name": "Little Caesars Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5100",
+    "city": "Edmonton",
+    "name": "Rogers Place",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "0",
+    "city": "Elmont",
+    "name": "UBS Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5043",
+    "city": "Glendale",
+    "name": "Gila River Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5178",
+    "city": "Las Vegas",
+    "name": "T-Mobile Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5081",
+    "city": "Los Angeles",
+    "name": "STAPLES Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5028",
+    "city": "Montreal",
+    "name": "Bell Centre",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "5030",
+    "city": "Nashville",
+    "name": "Bridgestone Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5054",
+    "city": "New York",
+    "name": "Madison Square Garden",
+    "country": "United States"
+  },
+  {
+    "venue_id": "0",
+    "city": "Newark",
+    "name": "Prudential Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5031",
+    "city": "Ottawa",
+    "name": "Canadian Tire Centre",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "5096",
+    "city": "Philadelphia",
+    "name": "Wells Fargo Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5034",
+    "city": "Pittsburgh",
+    "name": "PPG Paints Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5066",
+    "city": "Raleigh",
+    "name": "PNC Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "0",
+    "city": "San Jose",
+    "name": "SAP Center at San Jose",
+    "country": "United States"
+  },
+  {
+    "venue_id": "0",
+    "city": "Seattle",
+    "name": "Climate Pledge Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5076",
+    "city": "St. Louis",
+    "name": "Enterprise Center",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "5098",
+    "city": "St. Paul",
+    "name": "Xcel Energy Center",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "5027",
+    "city": "Sunrise",
+    "name": "BB&T Center",
+    "country": "United States"
+  },
+  {
+    "venue_id": "0",
+    "city": "Tampa",
+    "name": "AMALIE Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "0",
+    "city": "Toronto",
+    "name": "Scotiabank Arena",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "5073",
+    "city": "Vancouver",
+    "name": "Rogers Arena",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "5094",
+    "city": "Washington",
+    "name": "Capital One Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "0",
+    "city": "Winnipeg",
+    "name": "Bell MTS Place",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "0",
+    "city": "Stateline",
+    "name": "Edgewood Tahoe Resort",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5017",
+    "city": "Tampa",
+    "name": "Amalie Arena",
+    "country": "United States"
+  },
+  {
+    "venue_id": "5028",
+    "city": "Montreal",
+    "name": "Centre Bell",
+    "country": "Canada"
+  },
+  {
+    "venue_id": "0",
+    "city": "Uniondale",
+    "name": "Nassau Veterans Memorial Coliseum",
+    "country": "United States"
+  }
+]

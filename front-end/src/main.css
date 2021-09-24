@@ -1,0 +1,20 @@
+.input {
+border-style: solid;
+width: 150px;
+display: inline-block;
+}
+
+#myProgress {
+  width: 250px;
+  background-color: grey;
+  border-width: 1px;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: green;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white; 
+}

@@ -8,7 +8,7 @@ resource "azurerm_container_group" "main" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   ip_address_type     = "public"
-  dns_name_label      = "aci-label"
+  dns_name_label      = "aci-ktkq"
   os_type             = "Linux"
 
   container {
@@ -25,10 +25,10 @@ resource "azurerm_container_group" "main" {
        AZP_TOKEN=var.azp_token
     }
 
-#   ports {
-#     port     = 443
-#     protocol = "TCP"
-#   }
+   ports {
+     port     = 443
+     protocol = "TCP"
+   }
   }
 
   tags = {
