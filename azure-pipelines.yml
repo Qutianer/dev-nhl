@@ -8,10 +8,22 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line scriptd'
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'main-rg'
+    azureResourceGroup: 'main'
+    kubernetesCluster: 'aks-dev'
+    useClusterAdmin: true
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'front-end/deploy.yaml'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
 
 #- script: |
 #    echo Add other tasks to build, test, and deploy your project.
