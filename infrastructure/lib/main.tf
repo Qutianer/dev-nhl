@@ -11,8 +11,7 @@ provider "azurerm" {
 	features {}
 }
 
-resource "azurerm_resource_group" "main" {
+data "azurerm_resource_group" "main" {
   name     = "main"
-  location = "North Europe"
 }
 
