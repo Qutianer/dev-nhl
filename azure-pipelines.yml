@@ -8,8 +8,6 @@ trigger:
 
 pool: Default
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line scriptd'
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
