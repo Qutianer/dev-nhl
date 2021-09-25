@@ -34,9 +34,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: web
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
 spec:
   rules:
-  - host: dev.nhl.appw.ru
+  - host: www.nhl.appw.ru
     http:
       paths:
       - path: /
@@ -46,5 +48,4 @@ spec:
             name: fe
             port:
               number: 80
-  ingressClassName: addon-http-application-routing
 
