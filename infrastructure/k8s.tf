@@ -18,17 +18,18 @@ resource "azurerm_kubernetes_cluster" "dev" {
   }
 
   addon_profile {
-#    http_application_routing {
-#      enabled = "true"
-#    }
+    http_application_routing {
+      enabled = "true"
+    }
   }
 
   role_based_access_control {
-    enabled = "true"
-    azure_active_directory {
-      managed = "true"
-      admin_group_object_ids = [ "c07da0e9-1e87-40d2-86c1-626cc9c0e2c4" ]
-    }
+    enabled = "false"
+#    enabled = "true"
+#    azure_active_directory {
+#      managed = "true"
+#      admin_group_object_ids = [ "c07da0e9-1e87-40d2-86c1-626cc9c0e2c4" ]
+#    }
   }
  
   service_principal {

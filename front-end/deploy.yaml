@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: dev
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx
+      app: fe
   template:
     metadata:
       labels:
-        app: nginx
+        app: fe
     spec:
       containers:
       - name: nginx
@@ -21,28 +21,22 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx
+  name: fe
 spec:
   selector:
-    app: nginx
+    app: fe
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
-  type: LoadBalancer
+  type: ClusterIP
 
----
-apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
-  name: nginx
-spec:
-  controller: k8s.io/ingress-nginx
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: web
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
 spec:
   rules:
   - #host: test.ru
@@ -52,7 +46,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: nginx
+            name: fe
             port:
               number: 80
-  ingressClassName: nginx
+
