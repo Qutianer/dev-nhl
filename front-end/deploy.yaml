@@ -35,8 +35,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: web
-  annotations:
-    kubernetes.io/ingress.class: addon-http-application-routing
 spec:
   rules:
   - host: nhl.ef1e6b3388f24af0a900.northeurope.aksapp.io
@@ -49,4 +47,5 @@ spec:
             name: fe
             port:
               number: 80
+  ingressClassName: addon-http-application-routing
 
