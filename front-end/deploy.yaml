@@ -37,7 +37,7 @@ metadata:
   name: web
 spec:
   rules:
-  - host: nhl.ef1e6b3388f24af0a900.northeurope.aksapp.io
+  - host: dev.nhl.appw.ru
     http:
       paths:
       - path: /
