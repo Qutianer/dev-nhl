@@ -36,6 +36,22 @@ resource "azuredevops_resource_authorization" "azurerm" {
   authorized  = true
 }
 
+data "azuredevops_agent_pool" "pool" {
+  name = "contoso-pool"
+}
+
+resource "azuredevops_agent_queue" "queue" {
+  project_id    = azuredevops_project.project.id
+  agent_pool_id = data.azuredevops_agent_pool.pool.id
+}
+
+# Grant acccess to queue to all pipelines in the project
+resource "azuredevops_resource_authorization" "auth" {
+  project_id  = azuredevops_project.project.id
+  resource_id = azuredevops_agent_queue.queue.id
+#  type        = "queue"
+  authorized  = true
+}
 
 resource "azuredevops_build_definition" "dev_release" {
   project_id = azuredevops_project.project.id
