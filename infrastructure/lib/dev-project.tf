@@ -5,30 +5,35 @@ resource "azuredevops_project" "project" {
   visibility         = "public"
 }
 
-resource "azuredevops_serviceendpoint_github" "github_repo" {
+resource "azuredevops_serviceendpoint_github" "github" {
   project_id            = azuredevops_project.project.id
   service_endpoint_name = "qutianer_pat"
   description = ""
 
   auth_personal {
-    # Also can be set with AZDO_GITHUB_SERVICE_CONNECTION_PAT environment variable
     personal_access_token = var.github_pat
   }
 }
 
-resource "azuredevops_resource_authorization" "github_auth" {
+resource "azuredevops_resource_authorization" "github" {
   project_id  = azuredevops_project.project.id
-  resource_id = azuredevops_serviceendpoint_github.github_repo.id
+  resource_id = azuredevops_serviceendpoint_github.github.id
   authorized  = true
 }
 
-resource "azuredevops_serviceendpoint_azurerm" "azurerm_auth" {
+resource "azuredevops_serviceendpoint_azurerm" "azurerm" {
   project_id                = azuredevops_project.project.id
   service_endpoint_name     = "main_rg"
   description = "" 
   azurerm_spn_tenantid      = var.tenant_id
   azurerm_subscription_id   = var.subscription_id
   azurerm_subscription_name = "MySubscription"
+}
+
+resource "azuredevops_resource_authorization" "azurerm" {
+  project_id  = azuredevops_project.project.id
+  resource_id = azuredevops_serviceendpoint_azurerm.azurerm.id
+  authorized  = true
 }
 
 
@@ -47,7 +52,7 @@ resource "azuredevops_build_definition" "dev_release" {
 #    github_enterprise_url = "https://github.company.com"
     branch_name           = "dev"
     yml_path              = "azure-pipelines.yml"
-    service_connection_id = azuredevops_serviceendpoint_github.github_repo.id
+    service_connection_id = azuredevops_serviceendpoint_github.github.id
   }
 
 }
