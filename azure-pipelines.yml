@@ -11,7 +11,7 @@ steps:
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
-    azureSubscriptionEndpoint: 'main-rg'
+    azureSubscriptionEndpoint: 'main_rg'
     azureResourceGroup: 'main'
     kubernetesCluster: 'aks-dev'
     useClusterAdmin: true

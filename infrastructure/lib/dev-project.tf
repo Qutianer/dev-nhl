@@ -24,7 +24,7 @@ resource "azuredevops_resource_authorization" "github_auth" {
 
 resource "azuredevops_serviceendpoint_azurerm" "azurerm_auth" {
   project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "main-rg"
+  service_endpoint_name     = "main_rg"
   description = "" 
   azurerm_spn_tenantid      = var.tenant_id
   azurerm_subscription_id   = var.subscription_id
