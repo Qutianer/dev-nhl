@@ -22,6 +22,16 @@ resource "azuredevops_resource_authorization" "github_auth" {
   authorized  = true
 }
 
+resource "azuredevops_serviceendpoint_azurerm" "azurerm_auth" {
+  project_id                = azuredevops_project.project.id
+  service_endpoint_name     = "main-rg"
+  description = "" 
+  azurerm_spn_tenantid      = var.tenant_id
+  azurerm_subscription_id   = var.subscription_id
+  azurerm_subscription_name = "MySubscription"
+}
+
+
 resource "azuredevops_build_definition" "dev_release" {
   project_id = azuredevops_project.project.id
   name       = "dev_release"
