@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libicu60 \
     libunwind8 \
     netcat \
+    docker \
     libssl1.0 \
   && rm -rf /var/lib/apt/lists/*
 
