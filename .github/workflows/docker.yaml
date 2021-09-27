@@ -2,7 +2,7 @@ name: Build and push azure pipeline agent
 on:
   push:
     path:
-      - 'cicd'
+      - 'cicd/**'
 jobs:
   build:
     runs-on: ubuntu-latest

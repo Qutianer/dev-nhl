@@ -1,5 +1,4 @@
-FROM php:fpm
-RUN docker-php-ext-install mysqli
-#RUN apt-get update && docker-php-ext-install mysqli
-#RUN docker-php-ext-install pdo pdo_mysql mysqli
-#RUN docker-php-ext-enable mysqli
+FROM nginx:1.21.3
+RUN apt-get update && apt-get -y install php7.3-fpm php7.3-mysql && rm -rf /var/lib/apt/lists
+COPY include/40-php-fpm.sh  /docker-entrypoint.d/
+COPY src /opt/app
