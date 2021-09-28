@@ -80,9 +80,9 @@ resource "azuredevops_build_definition" "fe_dev" {
   name       = "fe_dev"
 #  path       = "\\ExampleFolder"
 
-#  ci_trigger {
-#    use_yaml = true
-#  }
+  ci_trigger {
+    use_yaml = true
+  }
 
   repository {
     repo_type             = "GitHub"
@@ -99,9 +99,9 @@ resource "azuredevops_build_definition" "be_dev" {
   name       = "be_dev"
 #  path       = "\\ExampleFolder"
 
-#  ci_trigger {
-#    use_yaml = true
-#  }
+  ci_trigger {
+    use_yaml = false
+  }
 
   repository {
     repo_type             = "GitHub"
