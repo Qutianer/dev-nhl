@@ -110,6 +110,5 @@ resource "azuredevops_build_definition" "be_dev" {
     yml_path              = "azure-be-dev.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
-
 }
 
