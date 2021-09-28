@@ -23,6 +23,29 @@ steps:
     command: 'buildAndPush'
     Dockerfile: 'front-end/Dockerfile'
 
+---
+
+trigger:
+  branches:
+   include:
+     - dev
+  paths:
+    include:
+      - back-end
+
+#pool: Default
+pool:
+  vmImage: ubuntu-20.04
+steps:
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr'
+    repository: 'nhl_be'
+    command: 'buildAndPush'
+    Dockerfile: 'back-end/Dockerfile'
+
+
 #- task: Kubernetes@1
 #  inputs:
 #    connectionType: 'Azure Resource Manager'
