@@ -100,7 +100,7 @@ resource "azuredevops_build_definition" "be_dev" {
 #  path       = "\\ExampleFolder"
 
   ci_trigger {
-    use_yaml = false
+    use_yaml = true
   }
 
   repository {

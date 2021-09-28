@@ -13,7 +13,7 @@ spec:
         app: fe
     spec:
       containers:
-      - name: nhl_fe
+      - name: nhl-fe
         image: nhl_fe_dev
         ports:
         - containerPort: 80
