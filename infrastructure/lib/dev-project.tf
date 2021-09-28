@@ -75,9 +75,9 @@ resource "azuredevops_resource_authorization" "auth" {
   authorized  = true
 }
 
-resource "azuredevops_build_definition" "dev_release" {
+resource "azuredevops_build_definition" "fe_dev" {
   project_id = azuredevops_project.project.id
-  name       = "dev_release"
+  name       = "fe_dev"
 #  path       = "\\ExampleFolder"
 
   ci_trigger {
@@ -87,9 +87,27 @@ resource "azuredevops_build_definition" "dev_release" {
   repository {
     repo_type             = "GitHub"
     repo_id               = "Qutianer/dev-nhl"
-#    github_enterprise_url = "https://github.company.com"
     branch_name           = "dev"
-    yml_path              = "azure-pipelines.yml"
+    yml_path              = "azure-fe-dev.yml"
+    service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
+  }
+
+}
+
+resource "azuredevops_build_definition" "be_dev" {
+  project_id = azuredevops_project.project.id
+  name       = "be_dev"
+#  path       = "\\ExampleFolder"
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type             = "GitHub"
+    repo_id               = "Qutianer/dev-nhl"
+    branch_name           = "dev"
+    yml_path              = "azure-be-dev.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
 

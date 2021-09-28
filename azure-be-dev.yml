@@ -1,0 +1,43 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+   include:
+     - dev
+  paths:
+    include:
+      - back-end
+
+#pool: Default
+pool:
+  vmImage: ubuntu-20.04
+steps:
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr'
+    repository: 'nhl_be_dev'
+    command: 'buildAndPush'
+    Dockerfile: 'back-end/Dockerfile'
+
+#- task: Kubernetes@1
+#  inputs:
+#    connectionType: 'Azure Resource Manager'
+#    azureSubscriptionEndpoint: 'main_rg'
+#    azureResourceGroup: 'main'
+#    kubernetesCluster: 'aks-dev'
+#    useClusterAdmin: true
+#    namespace: 'default'
+#    command: 'apply'
+#    useConfigurationFile: true
+#    configuration: 'front-end/deploy.yaml'
+#    secretType: 'dockerRegistry'
+#    containerRegistryType: 'Azure Container Registry'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
