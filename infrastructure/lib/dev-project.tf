@@ -2,7 +2,8 @@
 resource "azuredevops_project" "project" {
   name       = "project"
   description        = "Project Description"
-  visibility         = "public"
+#  visibility         = "public"
+  visibility         = "private"
 }
 
 resource "azuredevops_serviceendpoint_github" "github" {

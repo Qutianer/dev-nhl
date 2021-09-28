@@ -14,8 +14,8 @@ resource "azurerm_container_group" "main" {
   container {
     name   = "azureagent"
     image  = "cywl/azureagent:latest"
-    cpu    = "1"
-    memory = "2"
+    cpu    = "0.5"
+    memory = "1"
     environment_variables = {
        AZP_URL = "https://dev.azure.com/vujo3"
        AZP_AGENT_NAME = "mydockeragent"
