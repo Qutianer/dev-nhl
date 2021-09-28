@@ -37,25 +37,20 @@ resource "azuredevops_resource_authorization" "azurerm" {
   authorized  = true
 }
 
-resource "azuredevops_serviceendpoint_kubernetes" "dev" {
-  project_id            = azuredevops_project.project.id
-  service_endpoint_name = "Sample Kubernetes"
-  apiserver_url         = "https://sample-kubernetes-cluster.hcp.westeurope.azmk8s.io"
-  authorization_type    = "AzureSubscription"
 
-  azure_subscription {
-    subscription_id   = var.subscription_id
-    subscription_name = "MySubscription"
-    tenant_id         = var.tenant_id
-    resourcegroup_id  = "main"
-    namespace         = "default"
-    cluster_name      = "ddd"
-  }
+resource "azuredevops_serviceendpoint_azurecr" "main" {
+  project_id             = azuredevops_project.project.id
+  service_endpoint_name  = "acr"
+  resource_group            = "main"
+  azurecr_spn_tenantid      = var.tenant_id
+  azurecr_name              = "acrzt2fx0ax"
+  azurecr_subscription_id   = var.subscription_id
+  azurecr_subscription_name = "MySubscription"
 }
 
-resource "azuredevops_resource_authorization" "k8s" {
+resource "azuredevops_resource_authorization" "acr" {
   project_id  = azuredevops_project.project.id
-  resource_id = azuredevops_serviceendpoint_azurerm.dev.id
+  resource_id = azuredevops_serviceendpoint_azurecr.main.id
   authorized  = true
 }
 
@@ -66,6 +61,10 @@ data "azuredevops_agent_pool" "pool" {
 data "azuredevops_agent_queue" "queue" {
   project_id    = azuredevops_project.project.id
   name = "Default"
+}
+
+output "queuee_id" {
+	value = data.azuredevops_agent_queue.queue.id
 }
 
 # Grant acccess to queue to all pipelines in the project
@@ -95,3 +94,4 @@ resource "azuredevops_build_definition" "dev_release" {
   }
 
 }
+
