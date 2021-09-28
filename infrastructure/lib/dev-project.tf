@@ -6,7 +6,7 @@ resource "azuredevops_project" "project" {
   visibility         = "private"
 }
 
-resource "azuredevops_serviceendpoint_github" "github" {
+resource "azuredevops_serviceendpoint_github" "qutianer" {
   project_id            = azuredevops_project.project.id
   service_endpoint_name = "qutianer_pat"
   description = ""
@@ -16,15 +16,15 @@ resource "azuredevops_serviceendpoint_github" "github" {
   }
 }
 
-resource "azuredevops_resource_authorization" "github" {
+resource "azuredevops_resource_authorization" "github_qutianer" {
   project_id  = azuredevops_project.project.id
-  resource_id = azuredevops_serviceendpoint_github.github.id
+  resource_id = azuredevops_serviceendpoint_github.qutianer.id
   authorized  = true
 }
 
-resource "azuredevops_serviceendpoint_azurerm" "azurerm" {
+resource "azuredevops_serviceendpoint_azurerm" "dev" {
   project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "main_rg"
+  service_endpoint_name     = "kubernetes_dev"
   description = "" 
   azurerm_spn_tenantid      = var.tenant_id
   azurerm_subscription_id   = var.subscription_id
@@ -33,7 +33,29 @@ resource "azuredevops_serviceendpoint_azurerm" "azurerm" {
 
 resource "azuredevops_resource_authorization" "azurerm" {
   project_id  = azuredevops_project.project.id
-  resource_id = azuredevops_serviceendpoint_azurerm.azurerm.id
+  resource_id = azuredevops_serviceendpoint_azurerm.dev.id
+  authorized  = true
+}
+
+resource "azuredevops_serviceendpoint_kubernetes" "dev" {
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = "Sample Kubernetes"
+  apiserver_url         = "https://sample-kubernetes-cluster.hcp.westeurope.azmk8s.io"
+  authorization_type    = "AzureSubscription"
+
+  azure_subscription {
+    subscription_id   = var.subscription_id
+    subscription_name = "MySubscription"
+    tenant_id         = var.tenant_id
+    resourcegroup_id  = "main"
+    namespace         = "default"
+    cluster_name      = "ddd"
+  }
+}
+
+resource "azuredevops_resource_authorization" "k8s" {
+  project_id  = azuredevops_project.project.id
+  resource_id = azuredevops_serviceendpoint_azurerm.dev.id
   authorized  = true
 }
 
@@ -69,7 +91,7 @@ resource "azuredevops_build_definition" "dev_release" {
 #    github_enterprise_url = "https://github.company.com"
     branch_name           = "dev"
     yml_path              = "azure-pipelines.yml"
-    service_connection_id = azuredevops_serviceendpoint_github.github.id
+    service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
 
 }
