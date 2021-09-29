@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nhl-fe
-        image: acrzt2fx0ax.azurecr.io/nhl_fe_dev
+        image: acrzt2fx0ax.azurecr.io/nhl_fe_dev:90
         ports:
         - containerPort: 80
 ---

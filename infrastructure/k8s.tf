@@ -23,14 +23,14 @@ resource "azurerm_kubernetes_cluster" "dev" {
     }
   }
 
-  role_based_access_control {
-    enabled = "false"
+#  role_based_access_control {
+#    enabled = "false"
 #    enabled = "true"
 #    azure_active_directory {
 #      managed = "true"
 #      admin_group_object_ids = [ "c07da0e9-1e87-40d2-86c1-626cc9c0e2c4" ]
 #    }
-  }
+#  }
  
   service_principal {
     client_id = var.client_id
@@ -47,6 +47,14 @@ resource "azurerm_kubernetes_cluster" "dev" {
     ]
   }
 }
+
+#resource "azurerm_role_assignment" "acrpull_role" {
+#  scope                            = azurerm_container_registry.acr.id
+#  role_definition_name             = "AcrPull"
+#  principal_id                     = "53b52726-810c-4579-a761-9977243338a3"
+#  skip_service_principal_aad_check = true
+#}
+
 
 resource "local_file" "kube-config" {
  content = <<-EOT

@@ -94,6 +94,28 @@ resource "azuredevops_build_definition" "fe_dev" {
 
 }
 
+resource "azuredevops_serviceendpoint_kubernetes" "dev" {
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = "kubernetes"
+  apiserver_url         = "https://aks-dev-d42c267d.hcp.northeurope.azmk8s.io"
+  authorization_type    = "AzureSubscription"
+
+  azure_subscription {
+    subscription_id   = var.subscription_id
+    subscription_name = "MySubscription"
+    tenant_id         = var.tenant_id
+    resourcegroup_id  = "main"
+    namespace         = "default"
+    cluster_name      = "aks-dev"
+  }
+}
+
+resource "azuredevops_resource_authorization" "k8s" {
+  project_id  = azuredevops_project.project.id
+  resource_id = azuredevops_serviceendpoint_kubernetes.dev.id
+  authorized  = true
+}
+
 resource "azuredevops_build_definition" "be_dev" {
   project_id = azuredevops_project.project.id
   name       = "be_dev"
