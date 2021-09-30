@@ -23,6 +23,7 @@ steps:
     repository: 'nhl_fe_dev'
     command: 'buildAndPush'
     Dockerfile: 'front-end/Dockerfile'
+    tags: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
 
 #- task: Kubernetes@1
 #  inputs:
