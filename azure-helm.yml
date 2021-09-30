@@ -33,5 +33,5 @@ steps:
   inputs:
 #    targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     targetPath: '$(Build.ArtifactStagingDirectory)/helm.zip'
-#    artifact: 'helm.zip'
+    artifact: 'helm.zip'
     publishLocation: 'pipeline'
