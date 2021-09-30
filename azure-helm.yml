@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  batch: true
+  branches:
+   include:
+     - dev
+  paths:
+    include:
+      - front-end
+
+#pool: Default
+pool:
+  vmImage: ubuntu-20.04
+steps:
+
+# - script: VERSION_TAG=`git tag --sort=-creatordate` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+- script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+  displayName: Define VERSION_TAG variable
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr'
+    repository: 'nhl_fe_dev'
+    command: 'buildAndPush'
+    Dockerfile: 'front-end/Dockerfile'
+    tags: $(VERSION_TAG)
+
+#- task: Kubernetes@1
+#  inputs:
+#    connectionType: 'Azure Resource Manager'
+#    azureSubscriptionEndpoint: 'main_rg'
+#    azureResourceGroup: 'main'
+#    kubernetesCluster: 'aks-dev'
+#    useClusterAdmin: true
+#    namespace: 'default'
+#    command: 'apply'
+#    useConfigurationFile: true
+#    configuration: 'front-end/deploy.yaml'
+#    secretType: 'dockerRegistry'
+#    containerRegistryType: 'Azure Container Registry'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'

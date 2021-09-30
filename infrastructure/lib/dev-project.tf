@@ -112,3 +112,21 @@ resource "azuredevops_build_definition" "be_dev" {
   }
 }
 
+resource "azuredevops_build_definition" "helm" {
+  project_id = azuredevops_project.project.id
+  name       = "helm"
+#  path       = "\\ExampleFolder"
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type             = "GitHub"
+    repo_id               = "Qutianer/dev-nhl"
+    branch_name           = "dev"
+    yml_path              = "azure-helm.yml"
+    service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
+  }
+}
+
