@@ -26,10 +26,12 @@ steps:
     rootFolderOrFile: '$(Build.SourcesDirectory)/helm'
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+#    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/helm.zip'
     replaceExistingArchive: true
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    artifact: 'helm.zip'
+#    targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    targetPath: '$(Build.ArtifactStagingDirectory)/helm.zip'
+#    artifact: 'helm.zip'
     publishLocation: 'pipeline'
