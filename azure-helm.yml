@@ -25,13 +25,14 @@ steps:
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)/helm'
     includeRootFolder: false
-    archiveType: 'zip'
+    archiveType: 'tar'
+    tarCompression: gz
 #    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/helm.zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/helm.tgz'
     replaceExistingArchive: true
 - task: PublishPipelineArtifact@1
   inputs:
 #    targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    targetPath: '$(Build.ArtifactStagingDirectory)/helm.zip'
+    targetPath: '$(Build.ArtifactStagingDirectory)/helm.tgz'
     artifact: 'helm'
     publishLocation: 'pipeline'
