@@ -1,21 +1,15 @@
-steps:
-- task: KubernetesManifest@0
-  displayName: deploy
-  inputs:
-    kubernetesServiceConnection: k8s
-    namespace: default
-    manifests: '$(System.DefaultWorkingDirectory)/_Qutianer_dev-nhl/infrastructure/main.yaml'
 
+resource "azuredevops_serviceendpoint_azurerm" "dev" {
+  project_id                = azuredevops_project.project.id
+  service_endpoint_name     = "kubernetes_dev"
+  description = "" 
+  azurerm_spn_tenantid      = var.tenant_id
+  azurerm_subscription_id   = var.subscription_id
+  azurerm_subscription_name = "MySubscription"
+}
 
-
-steps:
-- task: Kubernetes@1
-  displayName: 'kubectl '
-  inputs:
-    connectionType: 'Azure Resource Manager'
-    azureSubscriptionEndpoint: 'main_rg'
-    azureResourceGroup: main
-    kubernetesCluster: kkkk
-    useClusterAdmin: true
-
-
+resource "azuredevops_resource_authorization" "azurerm" {
+  project_id  = azuredevops_project.project.id
+  resource_id = azuredevops_serviceendpoint_azurerm.dev.id
+  authorized  = true
+}

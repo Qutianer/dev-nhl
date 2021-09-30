@@ -22,22 +22,6 @@ resource "azuredevops_resource_authorization" "github_qutianer" {
   authorized  = true
 }
 
-resource "azuredevops_serviceendpoint_azurerm" "dev" {
-  project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "kubernetes_dev"
-  description = "" 
-  azurerm_spn_tenantid      = var.tenant_id
-  azurerm_subscription_id   = var.subscription_id
-  azurerm_subscription_name = "MySubscription"
-}
-
-resource "azuredevops_resource_authorization" "azurerm" {
-  project_id  = azuredevops_project.project.id
-  resource_id = azuredevops_serviceendpoint_azurerm.dev.id
-  authorized  = true
-}
-
-
 resource "azuredevops_serviceendpoint_azurecr" "main" {
   project_id             = azuredevops_project.project.id
   service_endpoint_name  = "acr"

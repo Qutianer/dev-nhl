@@ -13,7 +13,7 @@ be:
   tag: 1.3
   path: "/api"
 
-registry: "acrzt2fx0ax.azurecr.io/"
+registry: "acrzt2fx0ax.azurecr.io"
 #registry: "localhost:5000/"
 
 

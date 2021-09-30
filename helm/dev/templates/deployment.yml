@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.fe.name }}
-        image: "{{ .Values.registry }}{{ .Values.fe.image }}:{{ .Values.fe.tag }}"
+        image: "{{ .Values.registry }}/{{ .Values.fe.image }}:{{ .Values.fe.tag }}"
         ports:
         - containerPort: 80
 			
@@ -35,6 +35,6 @@ spec:
     spec:
       containers:
       - name: {{ .Values.be.name }}
-        image: "{{ .Values.registry }}{{ .Values.be.image }}:{{ .Values.be.tag }}"
+        image: "{{ .Values.registry }}/{{ .Values.be.image }}:{{ .Values.be.tag }}"
         ports:
         - containerPort: 80
