@@ -72,7 +72,7 @@ resource "azuredevops_build_definition" "fe_dev" {
     repo_type             = "GitHub"
     repo_id               = "Qutianer/dev-nhl"
     branch_name           = "dev"
-    yml_path              = "azure-fe-dev.yml"
+    yml_path              = "front-end/azure-fe-dev.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
 
@@ -91,7 +91,7 @@ resource "azuredevops_build_definition" "be_dev" {
     repo_type             = "GitHub"
     repo_id               = "Qutianer/dev-nhl"
     branch_name           = "dev"
-    yml_path              = "azure-be-dev.yml"
+    yml_path              = "back-end/azure-be-dev.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
 }
