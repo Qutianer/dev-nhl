@@ -1,1 +1,1 @@
-../dns.tf
+../lib/dns.tf

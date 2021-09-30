@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.fe.label }}
+spec:
+  replicas: {{ .Values.fe.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.fe.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.fe.label }}
+    spec:
+      containers:
+      - name: {{ .Values.fe.name }}
+        image: "{{ .Values.registry }}{{ .Values.fe.image }}:{{ .Values.fe.tag }}"
+        ports:
+        - containerPort: 80
+			
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.be.label }}
+spec:
+  replicas: {{ .Values.be.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.be.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.be.label }}
+    spec:
+      containers:
+      - name: {{ .Values.be.name }}
+        image: "{{ .Values.registry }}{{ .Values.be.image }}:{{ .Values.be.tag }}"
+        ports:
+        - containerPort: 80

@@ -8,7 +8,7 @@ proj="project"
 
 auth="Authorization: Basic $pat"
 enc="Content-Type: application/json"
-url="https://vsrm.dev.azure.com/$org/$proj/_apis/release/definitions/1?api-version=6.1-preview.4"
+url="https://vsrm.dev.azure.com/$org/$proj/_apis/release/definitions?api-version=6.0"
 
 echo "$url"
 # curl -d @build -u "admin:$pat" -H "$enc" "$url"
