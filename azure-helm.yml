@@ -16,6 +16,11 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 steps:
+- script: |
+    echo "Hello"
+    pwd
+    ls -la
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)/helm'
