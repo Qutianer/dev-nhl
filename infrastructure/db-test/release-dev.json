@@ -250,6 +250,9 @@
       },
       "schedules": [],
       "currentRelease": {
+        "id": 18,
+        "url": "https://vsrm.dev.azure.com/vujo3/0a53bfa4-c881-476c-8c84-baf139ed9856/_apis/Release/releases/18",
+        "_links": {}
       },
       "retentionPolicy": {
         "daysToKeep": 30,
@@ -278,7 +281,7 @@
         "gates": []
       },
       "environmentTriggers": [],
-      "badgeUrl": ""
+      "badgeUrl": "https://vsrm.dev.azure.com/vujo3/_apis/public/Release/badge/0a53bfa4-c881-476c-8c84-baf139ed9856/1/1"
     }
   ],
   "artifacts": [
@@ -288,7 +291,7 @@
       "alias": "_helm",
       "definitionReference": {
         "artifactSourceDefinitionUrl": {
-          "id": "",
+          "id": "https://dev.azure.com/vujo3/_permalink/_build/index?collectionId=ec859aa6-f1a5-496a-ad14-c7907795f2d1&projectId=0a53bfa4-c881-476c-8c84-baf139ed9856&definitionId=31",
           "name": ""
         },
         "defaultVersionBranch": {
@@ -320,7 +323,7 @@
           "name": "False"
         },
         "project": {
-          "id": "0a53bfa4-c881-476c-8c84-baf139ed9856",
+          "id": "57c38619-e2c0-45b0-b051-7f54ce183ff4",
           "name": "project"
         },
         "repository": {
@@ -377,7 +380,7 @@
           "name": ""
         },
         "artifactSourceDefinitionUrl": {
-          "id": "",
+          "id": "https://github.com/Qutianer/dev-nhl",
           "name": ""
         }
       },

@@ -23,6 +23,14 @@ resource "azurerm_mariadb_server" "main" {
   ssl_enforcement_enabled       = true
 }
 
+resource "azurerm_mariadb_firewall_rule" "azuresvc" {
+  name                = "azuresvc"
+  resource_group_name = data.azurerm_resource_group.main.name
+  server_name         = azurerm_mariadb_server.main.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
+}
+
 resource "azurerm_mariadb_database" "dev" {
   name                = "dev"
   resource_group_name = data.azurerm_resource_group.main.name
