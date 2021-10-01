@@ -1,0 +1,3 @@
+- release tag auto
+- lints, test, quality gates
+- DNS A records (+ gather IP)
