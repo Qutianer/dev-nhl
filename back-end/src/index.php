@@ -80,7 +80,13 @@ function get_players_game_stats($players){
 if(isset ($_GET['action']) ) {
 	switch ($_GET['action']) {
 			case 'load':
-					$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+$db = mysqli_init();
+$db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, false);
+$db->ssl_set(NULL, NULL, NULL, NULL, NULL);
+$db->real_connect($db_host, $db_user, $db_pass, $db_name);
+
+//					$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 //					echo "Action: load<br>";
 
 					$query = "SELECT venue_id,city,name,country FROM venues";
