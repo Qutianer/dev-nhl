@@ -3,7 +3,8 @@ kind: ConfigMap
 metadata:
   name: appconfig
 data:
-  appconfig: "
+  appconfig: |
+    # first line comment
 <?php
     $dbhost = "{{ .Values.db.host }}";
     $dbname = "{{ .Values.db.name }}";
@@ -11,4 +12,3 @@ data:
     $dbpass = "{{ .Values.db.pass }}";
     $adminpass = "{{ .Values.adminpass }}";
 ?>
-"
