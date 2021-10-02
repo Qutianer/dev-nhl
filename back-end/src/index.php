@@ -5,6 +5,8 @@ $db_name = 'nhl';
 $db_user = 'root';
 $db_pass = '';
 
+include "config.php"
+
 $db_init = "
 CREATE DATABASE $db_name;
 USE $db_name;
