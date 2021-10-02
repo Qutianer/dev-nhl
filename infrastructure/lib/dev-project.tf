@@ -6,6 +6,15 @@ resource "azuredevops_project" "project" {
   visibility         = "private"
 }
 
+data "azuredevops_agent_pool" "pool" {
+  name = "Default"
+}
+
+data "azuredevops_agent_queue" "queue" {
+  project_id    = azuredevops_project.project.id
+  name = "Default"
+}
+
 resource "azuredevops_serviceendpoint_github" "qutianer" {
   project_id            = azuredevops_project.project.id
   service_endpoint_name = "qutianer_pat"
@@ -22,20 +31,7 @@ resource "azuredevops_resource_authorization" "github_qutianer" {
   authorized  = true
 }
 
-data "azuredevops_agent_pool" "pool" {
-  name = "Default"
-}
 
-data "azuredevops_agent_queue" "queue" {
-  project_id    = azuredevops_project.project.id
-  name = "Default"
-}
-
-output "queuee_id" {
-	value = data.azuredevops_agent_queue.queue.id
-}
-
-# Grant acccess to queue to all pipelines in the project
 resource "azuredevops_resource_authorization" "auth" {
   project_id  = azuredevops_project.project.id
   resource_id = data.azuredevops_agent_queue.queue.id
@@ -96,5 +92,18 @@ resource "azuredevops_build_definition" "helm" {
     yml_path              = "azure-helm.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
+}
+
+resource "local_file" "devops_variables" {
+ content = jsonencode({
+	project_id = azuredevops_project.project.id
+	project_name = azuredevops_project.project.name
+	queuee_id = data.azuredevops_agent_queue.queue.id
+	github_sc_qutianer_id = azuredevops_serviceendpoint_github.qutianer.id
+	helm_artifact_id = azuredevops_build_definition.helm.id
+	variable_group = azuredevops_variable_group.db-dev.id
+})
+
+ filename = "devops_vars.tfvars"
 }
 

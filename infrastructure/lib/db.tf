@@ -32,7 +32,7 @@ resource "azurerm_mariadb_firewall_rule" "azuresvc" {
 }
 
 resource "azurerm_mariadb_database" "dev" {
-  name                = "dev"
+  name                = "nhl_dev"
   resource_group_name = data.azurerm_resource_group.main.name
   server_name         = azurerm_mariadb_server.main.name
   charset             = "utf8"

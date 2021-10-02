@@ -5,7 +5,8 @@ if [ "$1" == "" ]; then
   exit 1
 fi
 
-pat=$(grep 'deploy_pat' devops.auto.tfvars  | cut -d ' ' -f3 | tr -d '"')
+var_file="api_pat.tfvars"
+pat=$(grep 'deploy_pat' "$var_file"  | cut -d ' ' -f3)
 pat=$(echo -n ":$pat" | base64)
 org="vujo3"
 proj="project"

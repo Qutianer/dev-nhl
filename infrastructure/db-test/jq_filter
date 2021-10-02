@@ -1,0 +1,9 @@
+.id=0 |
+.createdBy = null |
+.modifiedBy = null |
+.environments[].deployPhases[].deploymentInput.queueId = $vars[].queuee_id  |
+.artifacts[0].sourceId = $vars[].project_id + ":" + $vars[].helm_artifact_id |
+.artifacts[0].definitionReference.definition = $vars[].helm_artifact_id |
+.artifacts[0].definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+.artifacts[1].definitionReference.connection.id = $vars[].github_sc_qutianer_id |
+.variableGroups = [$vars[].variable_group]

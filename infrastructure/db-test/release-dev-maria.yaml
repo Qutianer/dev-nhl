@@ -1,8 +1,0 @@
-steps:
-- task: MysqlDeploymentOnMachineGroup@1
-  displayName: 'Deploy Using : SqlTaskFile'
-  inputs:
-    SqlFile: '$(System.DefaultWorkingDirectory)/_Qutianer_dev-nhl/database/db.sql'
-    SqlUsername: root
-    SqlPassword: 123
-
