@@ -5,10 +5,10 @@ metadata:
 data:
   appconfig: |
     # first line comment
-<?php
+    <?php
     $dbhost = "{{ .Values.db.host }}";
     $dbname = "{{ .Values.db.name }}";
     $dbuser = "{{ .Values.db.user }}";
     $dbpass = "{{ .Values.db.pass }}";
     $adminpass = "{{ .Values.adminpass }}";
-?>
+    ?>
