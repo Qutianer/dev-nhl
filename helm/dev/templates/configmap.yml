@@ -6,9 +6,9 @@ data:
   appconfig: |
     # first line comment
     <?php
-    $dbhost = "{{ .Values.db.host }}";
-    $dbname = "{{ .Values.db.name }}";
-    $dbuser = "{{ .Values.db.user }}";
-    $dbpass = "{{ .Values.db.pass }}";
+    $db_host = "{{ .Values.db.host }}";
+    $db_name = "{{ .Values.db.name }}";
+    $db_user = "{{ .Values.db.user }}";
+    $db_pass = "{{ .Values.db.pass }}";
     $adminpass = "{{ .Values.adminpass }}";
     ?>
