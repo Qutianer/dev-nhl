@@ -15,6 +15,7 @@ spec:
       containers:
       - name: {{ .Values.fe.name }}
         image: "{{ .Values.registry }}/{{ .Values.fe.image }}:{{ .Values.fe.tag }}"
+        imagePullPolicy: {{ .Values.pullpolicy }}
         ports:
         - containerPort: 80
         resources:
@@ -38,6 +39,7 @@ spec:
       containers:
       - name: {{ .Values.be.name }}
         image: "{{ .Values.registry }}/{{ .Values.be.image }}:{{ .Values.be.tag }}"
+        imagePullPolicy: {{ .Values.pullpolicy }}
         ports:
         - containerPort: 80
         resources:
