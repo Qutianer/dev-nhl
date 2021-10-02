@@ -44,7 +44,7 @@ spec:
           {{- toYaml .Values.resources | nindent 10 }}
         volumeMounts:
         - name: appconfig
-          mountPath: "/opt/app/api"
+          mountPath: "/opt/app/api/config"
           readOnly: true
       volumes:
       - name: appconfig
