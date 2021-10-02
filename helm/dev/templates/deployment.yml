@@ -17,6 +17,8 @@ spec:
         image: "{{ .Values.registry }}/{{ .Values.fe.image }}:{{ .Values.fe.tag }}"
         ports:
         - containerPort: 80
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
 			
 ---
 apiVersion: apps/v1
@@ -38,3 +40,17 @@ spec:
         image: "{{ .Values.registry }}/{{ .Values.be.image }}:{{ .Values.be.tag }}"
         ports:
         - containerPort: 80
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        volumeMounts:
+        - name: appconfig
+          mountPath: "/opt/app/api"
+          readOnly: true
+  volumes:
+    - name: appconfig
+      configMap:
+        name: appconfig
+        items:
+        - key: "appconfig"
+          path: "config.php"
+

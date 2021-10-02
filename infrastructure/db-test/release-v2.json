@@ -35,7 +35,7 @@
   },
   "variables": {},
   "variableGroups": [
-    "2"
+    "3"
   ],
   "environments": [
     {
@@ -109,7 +109,7 @@
             "artifactsDownloadInput": {
               "downloadInputs": []
             },
-            "queueId": "167",
+            "queueId": "186",
             "demands": [],
             "enableAccessToken": false,
             "timeoutInMinutes": 0,
@@ -264,7 +264,7 @@
   ],
   "artifacts": [
     {
-      "sourceId": "674e2ae4-c146-4d50-9e71-6aae9fc0a035:35",
+      "sourceId": "63aa0486-87a7-46c4-afff-1d1f14aae5ec:39",
       "type": "Build",
       "alias": "_helm",
       "definitionReference": {
@@ -289,7 +289,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "33",
+          "id": "39",
           "name": "helm"
         },
         "definitions": {
@@ -301,7 +301,7 @@
           "name": "False"
         },
         "project": {
-          "id": "674e2ae4-c146-4d50-9e71-6aae9fc0a035",
+          "id": "63aa0486-87a7-46c4-afff-1d1f14aae5ec",
           "name": "project"
         },
         "repository": {
@@ -333,7 +333,7 @@
           "name": ""
         },
         "connection": {
-          "id": "11c3bf72-950d-4728-ad0b-6854a92350e0",
+          "id": "a505008b-4da4-401c-b552-53cad1b50e44",
           "name": "qutianer_pat"
         },
         "defaultVersionSpecific": {

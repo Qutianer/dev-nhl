@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appconfig
+data:
+  appconfig: |
+<?php
+    $dbhost = "{{ .Values.db.host }}";
+    $dbname = "{{ .Values.db.name }}";
+    $dbuser = "{{ .Values.db.user }}";
+    $dbpass = "{{ .Values.db.pass }}";
+    $adminpass = "{{ .Values.adminpass }}";
+?>
+

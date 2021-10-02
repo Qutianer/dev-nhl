@@ -1,1 +1,1 @@
-../lib/registry.tf
+../lib/acr/registry.tf

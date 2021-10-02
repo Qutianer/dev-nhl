@@ -2,6 +2,7 @@
 .createdBy = null |
 .modifiedBy = null |
 .environments[].deployPhases[].deploymentInput.queueId = $vars[].queuee_id  |
+.environments[0].deployPhases[0].workflowTasks[0].inputs.kubernetesServiceEndpoint = $vars[].k8s_dev_sc |
 .artifacts[0].sourceId = $vars[].project_id + ":" + $vars[].helm_artifact_id |
 .artifacts[0].definitionReference.definition.id = $vars[].helm_artifact_id |
 .artifacts[0].definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |

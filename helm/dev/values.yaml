@@ -1,16 +1,18 @@
+label: nhl
+
 fe:
   label: fe
   name: nhl-fe
   replicas: 2
-  image: nhl_fe_dev
-  tag: 1.3
+#  image: nhl_fe_dev
+#  tag: 1.3
 
 be:
   label: be
   name: nhl-be
   replicas: 2
-  image: nhl_be_dev
-  tag: 1.3
+#  image: nhl_be_dev
+#  tag: 1.3
   path: "/api"
 
 registry: "acrzt2fx0ax.azurecr.io"
@@ -20,4 +22,27 @@ registry: "acrzt2fx0ax.azurecr.io"
 ingress:
   name: web
   host: www.nhl.appw.ru
+
+adminpass: Aa123456
+#db:
+#  host: 
+#  name: 
+#  user:
+#  pass:
+
+resources: {
+ limits:
+   cpu: 100m
+   memory: 128Mi
+ requests:
+   cpu: 100m
+   memory: 128Mi
+}
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 

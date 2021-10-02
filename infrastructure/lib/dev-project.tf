@@ -94,14 +94,25 @@ resource "azuredevops_build_definition" "helm" {
   }
 }
 
+data "azuredevops_agent_queue" "mshosted" {
+  project_id = azuredevops_project.project.id 
+  name = "Azure Pipelines"
+}
+
 resource "local_file" "devops_variables" {
  content = jsonencode({
 	project_id = azuredevops_project.project.id
 	project_name = azuredevops_project.project.name
-	queuee_id = data.azuredevops_agent_queue.queue.id
+
+#	queuee_id = data.azuredevops_agent_queue.queue.id
+	queuee_id = data.azuredevops_agent_queue.mshosted.id
+
 	github_sc_qutianer_id = azuredevops_serviceendpoint_github.qutianer.id
+	k8s_dev_sc = azuredevops_serviceendpoint_kubernetes.dev.id
 	helm_artifact_id = azuredevops_build_definition.helm.id
 	variable_group = azuredevops_variable_group.db-dev.id
+
+
 })
 
  filename = "devops_vars.tfvars"
