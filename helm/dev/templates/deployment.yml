@@ -46,11 +46,11 @@ spec:
         - name: appconfig
           mountPath: "/opt/app/api"
           readOnly: true
-  volumes:
-    - name: appconfig
-      configMap:
-        name: appconfig
-        items:
-        - key: "appconfig"
-          path: "config.php"
+      volumes:
+      - name: appconfig
+        configMap:
+          name: appconfig
+          items:
+          - key: "appconfig"
+            path: "config.php"
 
