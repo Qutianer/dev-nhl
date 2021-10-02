@@ -4,7 +4,6 @@ metadata:
   name: appconfig
 data:
   appconfig: |
-    # first line comment
     <?php
     $db_host = "{{ .Values.db.host }}";
     $db_name = "{{ .Values.db.name }}";
