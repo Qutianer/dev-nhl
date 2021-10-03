@@ -81,10 +81,10 @@ if(isset ($_GET['action']) ) {
 	switch ($_GET['action']) {
 			case 'load':
 
-$db = mysqli_init();
-$db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, false);
-$db->ssl_set(NULL, NULL, NULL, NULL, NULL);
-$db->real_connect($db_host, $db_user, $db_pass, $db_name);
+					$db = mysqli_init();
+					if( ! $db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true))error_log("set option failed");
+					$db->ssl_set(NULL, NULL, "/etc/ssl/certs/ca-certificates.crt", NULL, NULL);
+					$db->real_connect($db_host, $db_user, $db_pass, $db_name);
 
 //					$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 //					echo "Action: load<br>";
@@ -191,7 +191,13 @@ if($datekey >= 2)break;
 			case 'initdb':
 					echo '{';
 					echo '"Action": "initdb",';
-					$db = new mysqli($db_host, $db_user, $db_pass);
+
+					$db = mysqli_init();
+					if( ! $db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true))error_log("set option failed");
+					$db->ssl_set(NULL, NULL, "/etc/ssl/certs/ca-certificates.crt", NULL, NULL);
+					$db->real_connect($db_host, $db_user, $db_pass, $db_name);
+
+//					$db = new mysqli($db_host, $db_user, $db_pass);
 					$db->multi_query($db_init);
 //					echo $db_init;
 //					echo json_encode(array("query" => $db_init),JSON_PRETTY_PRINT) . ',';
@@ -199,7 +205,7 @@ if($datekey >= 2)break;
 
 /* Load venues data */
 //					$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
-sleep(5);
+//					sleep(5);
 					while($db->next_result());
 					if( ($result = $db->query("use $db_name")) == false)echo "Error #" . $db->errno . ": " . $db->error . " at file " . __FILE__ . ":" . __LINE__;
 					$json = file_get_contents("venues.json");
@@ -220,7 +226,12 @@ sleep(5);
 /*#################################### GET PLAYERS STATS									####################################*/
 
 			case 'get':
-						$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
+						$db = mysqli_init();
+						if( ! $db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true))error_log("set option failed");
+						$db->ssl_set(NULL, NULL, "/etc/ssl/certs/ca-certificates.crt", NULL, NULL);
+						$db->real_connect($db_host, $db_user, $db_pass, $db_name);
+
+//						$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 						$query = "SELECT fullname,SUM(goals) as goals FROM goals
 JOIN players ON players.player_id = goals.player_id";
 						if(isset($_GET["country"]))$query .= " AND players.birthCountry = \"{$_GET["country"]}\"";
@@ -232,7 +243,11 @@ JOIN players ON players.player_id = goals.player_id";
 						$db->close();
 					break;
 			case 'get_countries':
-						$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
+						$db = mysqli_init();
+						if( ! $db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true))error_log("set option failed");
+						$db->ssl_set(NULL, NULL, "/etc/ssl/certs/ca-certificates.crt", NULL, NULL);
+						$db->real_connect($db_host, $db_user, $db_pass, $db_name);
+//						$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 						$query = "SELECT birthCountry as country FROM players GROUP BY country ORDER BY country;";
 						$result = $db->query($query);
 						echo json_encode(array_column($result->fetch_all(MYSQLI_ASSOC),"country"));
@@ -268,12 +283,22 @@ JOIN players ON players.player_id = goals.player_id";
 					echo json_encode($result);
 					break;
 			case 'delete_players':
-					$db = new mysqli($db_host, $db_user, $db_pass);
+					$db = mysqli_init();
+					if( ! $db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true))error_log("set option failed");
+					$db->ssl_set(NULL, NULL, "/etc/ssl/certs/ca-certificates.crt", NULL, NULL);
+					$db->real_connect($db_host, $db_user, $db_pass, $db_name);
+
+//					$db = new mysqli($db_host, $db_user, $db_pass);
 					$db->query("delete from players");
 					$db->close();
 					break;
 			case 'dropdb':
-					$db = new mysqli($db_host, $db_user, $db_pass);
+					$db = mysqli_init();
+					if( ! $db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true))error_log("set option failed");
+					$db->ssl_set(NULL, NULL, "/etc/ssl/certs/ca-certificates.crt", NULL, NULL);
+					$db->real_connect($db_host, $db_user, $db_pass, $db_name);
+
+//					$db = new mysqli($db_host, $db_user, $db_pass);
 					$db->query("drop database $db_name");
 					$db->close();
 					echo '"OK"';

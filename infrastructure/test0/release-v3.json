@@ -1,0 +1,510 @@
+{
+  "source": "userInterface",
+  "revision": 3,
+  "description": null,
+  "createdBy": null,
+  "createdOn": "2021-10-02T19:41:01.667Z",
+  "modifiedBy": null,
+  "modifiedOn": "2021-10-02T21:49:02.897Z",
+  "isDeleted": false,
+  "lastRelease": {
+    "id": 10,
+    "name": "dev-v10",
+    "artifacts": [],
+    "_links": {},
+    "description": "Triggered by helm 20211002.13.",
+    "releaseDefinition": {
+      "id": 1,
+      "projectReference": null,
+      "_links": {}
+    },
+    "createdOn": "2021-10-02T21:50:51.217Z",
+    "createdBy": {
+      "displayName": "GitHub",
+      "url": "https://spsprodweu5.vssps.visualstudio.com/A9008910c-5fd8-4479-bd6a-49926ad790f6/_apis/Identities/c226a575-7e1a-4ca5-becc-e2bbe4010480",
+      "_links": {
+        "avatar": {
+          "href": "https://dev.azure.com/vujo3/_apis/GraphProfile/MemberAvatars/svc.OTAwODkxMGMtNWZkOC00NDc5LWJkNmEtNDk5MjZhZDc5MGY2OkdpdEh1YiBBcHA6Y2EzZGVjNDQtY2FlMy00YjhlLWIzNTYtM2M4YjkwM2I1M2Y3"
+        }
+      },
+      "id": "c226a575-7e1a-4ca5-becc-e2bbe4010480",
+      "uniqueName": "GitHub App\\ca3dec44-cae3-4b8e-b356-3c8b903b53f7",
+      "imageUrl": "https://dev.azure.com/vujo3/_apis/GraphProfile/MemberAvatars/svc.OTAwODkxMGMtNWZkOC00NDc5LWJkNmEtNDk5MjZhZDc5MGY2OkdpdEh1YiBBcHA6Y2EzZGVjNDQtY2FlMy00YjhlLWIzNTYtM2M4YjkwM2I1M2Y3",
+      "descriptor": "svc.OTAwODkxMGMtNWZkOC00NDc5LWJkNmEtNDk5MjZhZDc5MGY2OkdpdEh1YiBBcHA6Y2EzZGVjNDQtY2FlMy00YjhlLWIzNTYtM2M4YjkwM2I1M2Y3"
+    }
+  },
+  "variables": {},
+  "variableGroups": [
+    "5"
+  ],
+  "environments": [
+    {
+      "id": 1,
+      "name": "Stage 1",
+      "rank": 1,
+      "owner": {
+        "displayName": "admin",
+        "url": "https://spsprodweu5.vssps.visualstudio.com/A9008910c-5fd8-4479-bd6a-49926ad790f6/_apis/Identities/4e1388d1-2f2c-6a0c-ae3a-d328b3b77bdc",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/vujo3/_apis/GraphProfile/MemberAvatars/aad.NGUxMzg4ZDEtMmYyYy03YTBjLWFlM2EtZDMyOGIzYjc3YmRj"
+          }
+        },
+        "id": "4e1388d1-2f2c-6a0c-ae3a-d328b3b77bdc",
+        "uniqueName": "admin@vujo3.onmicrosoft.com",
+        "imageUrl": "https://dev.azure.com/vujo3/_apis/GraphProfile/MemberAvatars/aad.NGUxMzg4ZDEtMmYyYy03YTBjLWFlM2EtZDMyOGIzYjc3YmRj",
+        "descriptor": "aad.NGUxMzg4ZDEtMmYyYy03YTBjLWFlM2EtZDMyOGIzYjc3YmRj"
+      },
+      "variables": {},
+      "variableGroups": [],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 1
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": "beforeGates"
+        }
+      },
+      "deployStep": {
+        "id": 2
+      },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 3
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": "afterSuccessfulGates"
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": {
+              "parallelExecutionType": "none"
+            },
+            "agentSpecification": {
+              "identifier": "ubuntu-20.04"
+            },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": {
+              "downloadInputs": []
+            },
+            "queueId": "221",
+            "demands": [],
+            "enableAccessToken": false,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {}
+          },
+          "rank": 1,
+          "phaseType": "agentBasedDeployment",
+          "name": "Agent job",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {},
+              "taskId": "afa7d54d-537b-4dc8-b60a-e0eeea2c9a87",
+              "version": "0.*",
+              "name": "helm upgrade",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "connectionType": "Kubernetes Service Connection",
+                "azureSubscriptionEndpoint": "",
+                "azureResourceGroup": "",
+                "kubernetesCluster": "",
+                "useClusterAdmin": "false",
+                "kubernetesServiceEndpoint": "72a31693-ced2-4aec-843c-d78c0f6a3462",
+                "namespace": "default",
+                "azureSubscriptionEndpointForACR": "",
+                "azureResourceGroupForACR": "",
+                "azureContainerRegistry": "",
+                "command": "upgrade",
+                "chartType": "FilePath",
+                "chartName": "",
+                "chartPath": "$(System.DefaultWorkingDirectory)/_helm/helm/helm.tgz",
+                "version": "",
+                "releaseName": "nhl-dev",
+                "overrideValues": "be.tag=v1.2.3,fe.tag=v1.2.3,db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass)",
+                "valueFile": "",
+                "destination": "$(Build.ArtifactStagingDirectory)",
+                "canaryimage": "false",
+                "upgradetiller": "true",
+                "updatedependency": "false",
+                "save": "true",
+                "install": "true",
+                "recreate": "false",
+                "resetValues": "false",
+                "force": "false",
+                "waitForExecution": "true",
+                "arguments": "",
+                "enableTls": "false",
+                "caCert": "",
+                "certificate": "",
+                "privatekey": "",
+                "tillernamespace": "",
+                "failOnStderr": "false",
+                "publishPipelineMetadata": "true",
+                "chartNameForACR": "",
+                "chartPathForACR": ""
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "6fec3938-df52-4c01-9f5a-8ed5f66c377e",
+              "version": "1.*",
+              "name": "Deploy Using : SqlTaskFile",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "TaskNameSelector": "SqlTaskFile",
+                "SqlFile": "$(System.DefaultWorkingDirectory)/_Qutianer_dev-nhl/database/db.sql",
+                "SqlInline": "",
+                "ServerName": "$(dbhost)",
+                "DatabaseName": "$(dbname)",
+                "SqlUsername": "$(dbuser)",
+                "SqlPassword": "$(dbpass)",
+                "SqlAdditionalArguments": ""
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [],
+      "conditions": [
+        {
+          "name": "ReleaseStarted",
+          "conditionType": "event",
+          "value": ""
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [],
+      "currentRelease": {
+        "id": 10,
+        "url": "https://vsrm.dev.azure.com/vujo3/ca3dec44-cae3-4b8e-b356-3c8b903b53f7/_apis/Release/releases/10",
+        "_links": {}
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {},
+      "properties": {
+        "BoardsEnvironmentType": {
+          "$type": "System.String",
+          "$value": "unmapped"
+        },
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "environmentTriggers": [],
+      "badgeUrl": "https://vsrm.dev.azure.com/vujo3/_apis/public/Release/badge/ca3dec44-cae3-4b8e-b356-3c8b903b53f7/1/1"
+    }
+  ],
+  "artifacts": [
+    {
+      "sourceId": "40fd39cc-006a-429b-9fad-1360dba132b8:48",
+      "type": "Build",
+      "alias": "_be_dev",
+      "definitionReference": {
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "48",
+          "name": "be_dev"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "40fd39cc-006a-429b-9fad-1360dba132b8",
+          "name": "project"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        },
+        "artifactSourceDefinitionUrl": {
+          "id": "https://dev.azure.com/vujo3/_permalink/_build/index?collectionId=ec859aa6-f1a5-496a-ad14-c7907795f2d1&projectId=ca3dec44-cae3-4b8e-b356-3c8b903b53f7&definitionId=43",
+          "name": ""
+        }
+      },
+      "isRetained": false
+    },
+    {
+      "sourceId": "40fd39cc-006a-429b-9fad-1360dba132b8:47",
+      "type": "Build",
+      "alias": "_fe_dev",
+      "definitionReference": {
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "47",
+          "name": "fe_dev"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "40fd39cc-006a-429b-9fad-1360dba132b8",
+          "name": "project"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        },
+        "artifactSourceDefinitionUrl": {
+          "id": "https://dev.azure.com/vujo3/_permalink/_build/index?collectionId=ec859aa6-f1a5-496a-ad14-c7907795f2d1&projectId=ca3dec44-cae3-4b8e-b356-3c8b903b53f7&definitionId=41",
+          "name": ""
+        }
+      },
+      "isRetained": false
+    },
+    {
+      "sourceId": "40fd39cc-006a-429b-9fad-1360dba132b8:46",
+      "type": "Build",
+      "alias": "_helm",
+      "definitionReference": {
+        "artifactSourceDefinitionUrl": {
+          "id": "https://dev.azure.com/vujo3/_permalink/_build/index?collectionId=ec859aa6-f1a5-496a-ad14-c7907795f2d1&projectId=ca3dec44-cae3-4b8e-b356-3c8b903b53f7&definitionId=42",
+          "name": ""
+        },
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "46",
+          "name": "helm"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "40fd39cc-006a-429b-9fad-1360dba132b8",
+          "name": "project"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "isRetained": false
+    },
+    {
+      "sourceId": "94879b07-ad57-4352-bd2a-53baf5334500:Qutianer/dev-nhl",
+      "type": "GitHub",
+      "alias": "_Qutianer_dev-nhl",
+      "definitionReference": {
+        "artifactSourceDefinitionUrl": {
+          "id": "https://github.com/Qutianer/dev-nhl",
+          "name": ""
+        },
+        "branch": {
+          "id": "dev",
+          "name": "dev"
+        },
+        "checkoutNestedSubmodules": {
+          "id": "True",
+          "name": "Any nested submodules within"
+        },
+        "checkoutSubmodules": {
+          "id": "",
+          "name": ""
+        },
+        "connection": {
+          "id": "427414d3-acbf-49a0-880c-5ac748babca3",
+          "name": "qutianer_pat"
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestFromBranchType",
+          "name": "Latest from the default branch"
+        },
+        "definition": {
+          "id": "Qutianer/dev-nhl",
+          "name": "Qutianer/dev-nhl"
+        },
+        "fetchDepth": {
+          "id": "",
+          "name": ""
+        },
+        "gitHubRepositoryId": {
+          "id": "402817507",
+          "name": "402817507"
+        },
+        "gitLfsSupport": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "isPrimary": true,
+      "isRetained": false
+    }
+  ],
+  "triggers": [
+    {
+      "artifactAlias": "_helm",
+      "triggerConditions": [],
+      "triggerType": "artifactSource"
+    },
+    {
+      "artifactAlias": "_be_dev",
+      "triggerConditions": [],
+      "triggerType": "artifactSource"
+    },
+    {
+      "artifactAlias": "_fe_dev",
+      "triggerConditions": [],
+      "triggerType": "artifactSource"
+    }
+  ],
+  "releaseNameFormat": "dev-v$(rev:r)",
+  "tags": [],
+  "properties": {
+    "DefinitionCreationSource": {
+      "$type": "System.String",
+      "$value": "ReleaseNew"
+    },
+    "IntegrateBoardsWorkItems": {
+      "$type": "System.String",
+      "$value": "False"
+    },
+    "IntegrateJiraWorkItems": {
+      "$type": "System.String",
+      "$value": "false"
+    }
+  },
+  "id": 0,
+  "name": "release-dev",
+  "path": "\\",
+  "projectReference": null,
+  "url": "https://vsrm.dev.azure.com/vujo3/ca3dec44-cae3-4b8e-b356-3c8b903b53f7/_apis/Release/definitions/1",
+  "_links": {
+    "self": {
+      "href": "https://vsrm.dev.azure.com/vujo3/ca3dec44-cae3-4b8e-b356-3c8b903b53f7/_apis/Release/definitions/1"
+    },
+    "web": {
+      "href": "https://dev.azure.com/vujo3/ca3dec44-cae3-4b8e-b356-3c8b903b53f7/_release?definitionId=1"
+    }
+  }
+}
