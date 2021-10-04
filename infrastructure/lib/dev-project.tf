@@ -109,8 +109,8 @@ resource "local_file" "devops_variables" {
 	github_sc_qutianer_id = azuredevops_serviceendpoint_github.qutianer.id
 	k8s_dev_sc = azuredevops_serviceendpoint_kubernetes.dev.id
 	helm_artifact_id = azuredevops_build_definition.helm.id
-	fe_artifact_id = azuredevops_build_definition.be_dev.id
-	be_artifact_id = azuredevops_build_definition.fe_dev.id
+	fe_artifact_id = azuredevops_build_definition.fe_dev.id
+	be_artifact_id = azuredevops_build_definition.be_dev.id
 
 	variable_group = azuredevops_variable_group.db-dev.id
 

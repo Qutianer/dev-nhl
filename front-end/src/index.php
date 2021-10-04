@@ -4,7 +4,7 @@
 <script src="https://unpkg.com/vue@3.2.12/dist/vue.global.js"></script> <!-- -->
 <!-- <script src="https://unpkg.com/vue@next"></script> <!-- -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- -->
-
+<title>NHL Players stats</title>
 </head>
 <body>
 <table>
@@ -37,9 +37,9 @@
 	<button @click='load_data'>Load data</button>
 </div>
 <br>
-<a href='http://10.196.30.231:8081/api/?action=delete_players'>Delete stat</a><br>
-<a href='http://10.196.30.231:8081/api/?action=initdb'>Initdb database</a><br>
-<a href='http://10.196.30.231:8081/api/?action=dropdb'>Drop database</a><br>
+<a href='/api/?action=delete_players'>Delete stat</a><br>
+<a href='/api/?action=initdb'>Initdb database</a><br>
+<a href='/api/?action=dropdb'>Drop database</a><br>
 </body>
 </html>
 <script src="main.js"></script>
