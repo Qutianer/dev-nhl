@@ -55,6 +55,10 @@ resource "azurerm_kubernetes_cluster" "dev" {
 #  skip_service_principal_aad_check = true
 #}
 
+data "azurerm_lb" "k8s" {
+  name                = "kubernetes"
+  resource_group_name = azurerm_kubernetes_cluster.dev.node_resource_group
+}
 
 resource "local_file" "kube-config" {
  content = <<-EOT

@@ -31,7 +31,6 @@ resource "azuredevops_resource_authorization" "github_qutianer" {
   authorized  = true
 }
 
-
 resource "azuredevops_resource_authorization" "auth" {
   project_id  = azuredevops_project.project.id
   resource_id = data.azuredevops_agent_queue.queue.id
