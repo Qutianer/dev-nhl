@@ -19,7 +19,7 @@ pool:
 steps:
 - script: |
     res=0
-    for file in $( find . -type f -name '*.php' ); do
+    for file in $( find test -type f -name '*.php' ); do
       php -l "$file" || res=1
     done
     if [ $res != 0 ]; then echo "##vso[task.logissue type=error]PHP syntax error."; fi
