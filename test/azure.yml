@@ -20,6 +20,7 @@ pool:
   vmImage: ubuntu-20.04
 steps:
 - script: |
+    #!/bin/bash
     res=0
     for file in $( find test -type f -name '*.php' ); do
       php -l "$file" || res=1
