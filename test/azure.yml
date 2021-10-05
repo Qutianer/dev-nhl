@@ -2,6 +2,9 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+variables:
+- name: path
+  value: test
 
 trigger:
   batch: true
@@ -10,7 +13,7 @@ trigger:
      - dev
   paths:
     include:
-      - test
+      - $(path)
 
 #pool: Default
 pool:
@@ -18,7 +21,7 @@ pool:
 steps:
 - script: |
     res=0
-    for file in $( find . -type f -name '*.php' ); do
+    for file in $( find ${{path}} -type f -name '*.php' ); do
       php -l "$file" || res=1
     done
     if [ $res != 0 ]; then echo "##vso[task.logissue type=error]PHP syntax error."; fi
