@@ -12,7 +12,7 @@ pool:
   vmImage: ubuntu-20.04
 
 variables:
-- name: bpath
+- name: testpath
   value: test
 
 steps:
@@ -27,13 +27,13 @@ steps:
     done
     if [ $res != 0 ]; then echo "##vso[task.logissue type=error]PHP syntax error."
     else
-      echo "$VERSION_TAG">version_tag
+      echo "$VERSION_TAG">$(Build.ArtifactStagingDirectory)/version_tag
     fi
     exit $res
   displayName: Lint PHP files
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/version_tag'
+    targetPath: 'version_tag'
     artifact: 'version_tag'
     publishLocation: 'pipeline'
