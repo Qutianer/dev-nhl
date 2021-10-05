@@ -10,11 +10,28 @@ trigger:
 #pool: Default
 pool:
   vmImage: ubuntu-20.04
+
+variables:
+- name: testpath
+  value: back-end
+
 steps:
 
 #- script: VERSION_TAG=`git tag --sort=-creatordate` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
 - script: VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
   displayName: Define VERSION_TAG variable
+
+- displayName: Lint PHP files
+  script: |
+    res=0
+    for file in $( find $( testpath ) -type f -name '*.php' ); do
+      php -l "$file" || res=1
+    done
+    if [ $res != 0 ]; then echo "##vso[task.logissue type=error]PHP syntax error."
+    else
+      echo "$VERSION_TAG">version_tag
+    fi
+    exit $res
 
 - task: Docker@2
   inputs:
@@ -24,3 +41,8 @@ steps:
     Dockerfile: 'front-end/Dockerfile'
     tags: $(VERSION_TAG)
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/version_tag'
+    artifact: 'version_tag'
+    publishLocation: 'pipeline'
