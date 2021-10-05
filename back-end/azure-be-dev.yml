@@ -43,6 +43,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/version_tag'
+    targetPath: 'version_tag'
     artifact: 'version_tag'
     publishLocation: 'pipeline'

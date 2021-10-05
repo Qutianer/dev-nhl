@@ -21,7 +21,6 @@ steps:
   displayName: Define VERSION_TAG variable
 
 - script: |
-    pwd
     res=0
     for file in $( find $( testpath ) -type f -name '*.php' ); do
       php -l "$file" || res=1
