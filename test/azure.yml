@@ -2,6 +2,9 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+variables:
+- name: bpath
+  value: test
 
 trigger:
   batch: true
@@ -15,10 +18,6 @@ trigger:
 #pool: Default
 pool:
   vmImage: ubuntu-20.04
-
-variables:
-- name: bpath
-  value: test
 
 steps:
 - script:
