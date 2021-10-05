@@ -17,13 +17,13 @@ pool:
   vmImage: ubuntu-20.04
 
 variables:
-- name: path
+- name: bpath
   value: test
 
 steps:
 - script: |
     res=0
-    for file in $( find test -type f -name '*.php' ); do
+    for file in $( find $( bpath ) -type f -name '*.php' ); do
       php -l "$file" || res=1
     done
     if [ $res != 0 ]; then echo "##vso[task.logissue type=error]PHP syntax error."; fi
