@@ -21,6 +21,9 @@ variables:
   value: test
 
 steps:
+- script:
+    VERSION_TAG=`git describe --tags` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
+  displayName: Define VERSION_TAG variable
 - script: |
     res=0
     for file in $( find $( bpath ) -type f -name '*.php' ); do
