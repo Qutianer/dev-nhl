@@ -16,6 +16,10 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 
+variables:
+- name: path
+  value: test
+
 steps:
 - script: |
     res=0
