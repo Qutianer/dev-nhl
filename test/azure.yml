@@ -35,6 +35,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: 'version_tag'
-#    artifact: 'version_tag'
+#    targetPath: 'version_tag'
+    artifact: 'version_tag'
     publishLocation: 'pipeline'
