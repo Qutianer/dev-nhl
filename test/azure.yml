@@ -21,13 +21,14 @@ steps:
   displayName: Define VERSION_TAG variable
 
 - script: |
+    pwd
     res=0
     for file in $( find $( testpath ) -type f -name '*.php' ); do
       php -l "$file" || res=1
     done
     if [ $res != 0 ]; then echo "##vso[task.logissue type=error]PHP syntax error."
     else
-      echo "$VERSION_TAG">$(Build.ArtifactStagingDirectory)/version_tag
+      echo "$VERSION_TAG">version_tag
     fi
     exit $res
   displayName: Lint PHP files
