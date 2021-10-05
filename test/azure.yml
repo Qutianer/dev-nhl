@@ -16,7 +16,7 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 steps:
-- script:
+- script: |
     res=0
     for file in $( find . -type f -name '*.php' ); do
       php -l "$file" || res=1
