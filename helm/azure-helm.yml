@@ -23,8 +23,8 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)/helm'
-    includeRootFolder: false
+    rootFolderOrFile: '$(Build.SourcesDirectory)/helm/dev'
+    includeRootFolder: true
     archiveType: 'tar'
     tarCompression: gz
 #    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'

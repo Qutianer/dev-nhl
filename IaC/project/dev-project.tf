@@ -88,7 +88,7 @@ resource "azuredevops_build_definition" "helm" {
     repo_type             = "GitHub"
     repo_id               = "Qutianer/dev-nhl"
     branch_name           = "dev"
-    yml_path              = "azure-helm.yml"
+    yml_path              = "helm/azure-helm.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
 }
