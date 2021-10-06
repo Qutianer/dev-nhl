@@ -1,1 +1,0 @@
-../lib/acr/registry.tf

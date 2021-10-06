@@ -6,22 +6,23 @@ resource "azuredevops_variable_group" "db-dev" {
 
   variable {
     name  = "dbhost"
-    value = azurerm_mariadb_server.main.fqdn
+    value = 1
   }
 
   variable {
     name  = "dbname"
-    value = azurerm_mariadb_database.dev.name
+    value = 2
   }
 
   variable {
     name  = "dbuser"
-    value = "${azurerm_mariadb_server.main.administrator_login}@${azurerm_mariadb_server.main.name}"
+    value = 3
   }
 
   variable {
     name         = "dbpass"
-    secret_value = azurerm_mariadb_server.main.administrator_login_password
+    secret_value = 4
     is_secret    = true
   }
 }
+

@@ -107,10 +107,12 @@ resource "local_file" "devops_variables" {
 	queuee_id = data.azuredevops_agent_queue.mshosted.id
 
 	github_sc_qutianer_id = azuredevops_serviceendpoint_github.qutianer.id
+#	k8s_dev_sc = azuredevops_serviceendpoint_kubernetes.dev.id
 	helm_artifact_id = azuredevops_build_definition.helm.id
 	fe_artifact_id = azuredevops_build_definition.fe_dev.id
 	be_artifact_id = azuredevops_build_definition.be_dev.id
 
+	variable_group = azuredevops_variable_group.db-dev.id
 
 
 })
@@ -118,3 +120,14 @@ resource "local_file" "devops_variables" {
  filename = "devops_vars.tfvars"
 }
 
+module "vault" {
+ source = "./key_vault"
+
+azurerm_resource_group_location = data.azurerm_resource_group.main.location
+azurerm_resource_group_name = data.azurerm_resource_group.main.name
+azurerm_tenant_id = var.tenant_id
+objects_id = var.client_id
+certkey = var.certkey
+certcrt = var.certcrt
+
+}

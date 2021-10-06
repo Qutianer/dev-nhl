@@ -5,6 +5,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing
 spec:
+  tls:
+  - hosts:
+      - {{ .Values.ingress.host }}
+    secretName: certificate
   rules:
   - host: {{ .Values.ingress.host }}
     http:
