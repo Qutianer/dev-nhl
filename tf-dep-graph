@@ -1,0 +1,28 @@
+k8s_dev.tf:
+	azurerm_kubernetes_cluster.dev
+	data.azurerm_lb.dev
+	local_file.dev_kube_config { k8s_dev_config.tfvars }
+
+devops_k8s_sc.tf:
+	azuredevops_serviceendpoint_kubernetes.dev -> azuredevops_project.project.id, azurerm_kubernetes_cluster.dev
+	azuredevops_resource_authorization.k8s_dev -> azuredevops_project.project.id
+
+dns.tf:
+	azurerm_dns_zone.nhl
+	azurerm_dns_a_record.nhl_www -> data.azurerm_lb.dev
+	resource "azurerm_dns_a_record.nhl_dev -> data.azurerm_lb.dev
+
+db_dev.tf:
+	random_password.dev_dbadmin_pass
+	azurerm_mariadb_server.dev
+	azurerm_mariadb_firewall_rule.dev
+	azurerm_mariadb_database.dev
+
+devops_arm_sc.tf:
+	azuredevops_serviceendpoint_azurerm.main
+	azuredevops_resource_authorization.azurerm
+
+devops_groupvars.tf:
+	azuredevops_variable_group.db_dev
+		-> azurerm_mariadb_server.main.fqdn
+		-> azurerm_mariadb_database.dev.name

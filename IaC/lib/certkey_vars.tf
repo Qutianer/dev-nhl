@@ -1,0 +1,2 @@
+variable "certkey" {}
+variable "certcrt" {}

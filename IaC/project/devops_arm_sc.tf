@@ -3,7 +3,7 @@ resource "azuredevops_serviceendpoint_azurerm" "main" {
   service_endpoint_name = "azurerm"
 #  description = "Managed by Terraform" 
   credentials {
-    serviceprincipalid  = var.client_id
+    serviceprincipalid  = "981281e4-fe69-4abf-932b-a6f3bffb71fb"
     serviceprincipalkey = var.client_secret
   }
   azurerm_spn_tenantid      = var.tenant_id

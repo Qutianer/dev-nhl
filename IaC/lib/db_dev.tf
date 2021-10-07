@@ -1,16 +1,16 @@
-resource "random_password" "dbserver_password" {
+resource "random_password" "dev_dbadmin_pass" {
   length           = 16
   special          = false
   override_special = "_%@"
 }
 
-resource "azurerm_mariadb_server" "main" {
-  name                = "maindb-ycmp8cu1"
+resource "azurerm_mariadb_server" "dev" {
+  name                = "nhl-dev-db-ycmp8cu1"
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
 
   administrator_login          = "dbadmin"
-  administrator_login_password = random_password.dbserver_password.result
+  administrator_login_password = random_password.dev_dbadmin_pass.result
 
   sku_name   = "B_Gen5_1"
   storage_mb = 5120
@@ -23,10 +23,10 @@ resource "azurerm_mariadb_server" "main" {
   ssl_enforcement_enabled       = true
 }
 
-resource "azurerm_mariadb_firewall_rule" "azuresvc" {
-  name                = "azuresvc"
+resource "azurerm_mariadb_firewall_rule" "dev" {
+  name                = "allow-azure-svcs"
   resource_group_name = data.azurerm_resource_group.main.name
-  server_name         = azurerm_mariadb_server.main.name
+  server_name         = azurerm_mariadb_server.dev.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
 }
@@ -34,7 +34,7 @@ resource "azurerm_mariadb_firewall_rule" "azuresvc" {
 resource "azurerm_mariadb_database" "dev" {
   name                = "nhl_dev"
   resource_group_name = data.azurerm_resource_group.main.name
-  server_name         = azurerm_mariadb_server.main.name
+  server_name         = azurerm_mariadb_server.dev.name
   charset             = "utf8"
   collation           = "utf8_general_ci"
 }

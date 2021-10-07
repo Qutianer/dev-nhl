@@ -4,7 +4,7 @@ var_file="api_pat.tfvars"
 pat=$(grep 'deploy_pat' "$var_file"  | cut -d ' ' -f3)
 pat=$(echo -n ":$pat" | base64)
 org="vujo3"
-proj="project"
+proj="nhl"
 
 
 auth="Authorization: Basic $pat"

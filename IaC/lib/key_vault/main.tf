@@ -10,7 +10,7 @@ resource "azurerm_key_vault" "main" {
   sku_name = "standard"
   access_policy {
     tenant_id = var.azurerm_tenant_id
-    object_id = var.objects_id
+    object_id = "53b52726-810c-4579-a761-9977243338a3"
 
     key_permissions = [
       "Get", "List"

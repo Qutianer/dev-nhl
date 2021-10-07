@@ -2,3 +2,19 @@
 - lints, test, quality gates
 - update countries on data load
 - get chunk count before load
+
+
+
+steps:
+- task: AzureCLI@2
+  displayName: 'Azure CLI '
+  inputs:
+    azureSubscription: azurerm
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+     pwd
+     ls -la
+     ls -la a
+     az group list
+

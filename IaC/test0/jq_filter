@@ -1,19 +1,23 @@
 .id=0 |
 .createdBy = null |
 .modifiedBy = null |
-.environments[].deployPhases[].deploymentInput.queueId = $vars[].queuee_id  |
-.environments[0].deployPhases[0].workflowTasks[0].inputs.kubernetesServiceEndpoint = $vars[].k8s_dev_sc |
+.lastRelease = null |
+.environments[0].deployPhases[0].deploymentInput.queueId = $vars[].queuee_id  |
+(.environments[0].deployPhases[0].workflowTasks[] | select (.name == "helm upgrade")) .inputs.kubernetesServiceEndpoint = $vars[].k8s_dev_sc |
+(.environments[0].deployPhases[0].workflowTasks[] | select (.name == "Azure Key Vault: keyvault-531b25k8")) .inputs.ConnectedServiceName = $vars[].azurerm_sc |
 
-.artifacts[0].sourceId = $vars[].project_id + ":" + $vars[].be_artifact_id |
-.artifacts[0].definitionReference.definition.id = $vars[].be_artifact_id |
-.artifacts[0].definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+(.artifacts[] | select (.alias == "_Qutianer_dev-nhl" )) .definitionReference.connection.id = $vars[].github_sc |
 
-.artifacts[1].sourceId = $vars[].project_id + ":" + $vars[].fe_artifact_id |
-.artifacts[1].definitionReference.definition.id = $vars[].fe_artifact_id |
-.artifacts[1].definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+(.artifacts[] | select (.alias == "_fe_dev" )) .sourceId = $vars[].project_id + ":" + $vars[].fe_artifact_id |
+(.artifacts[] | select (.alias == "_fe_dev" )) .definitionReference.definition.id = $vars[].fe_artifact_id |
+(.artifacts[] | select (.alias == "_fe_dev" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
 
-.artifacts[2].sourceId = $vars[].project_id + ":" + $vars[].helm_artifact_id |
-.artifacts[2].definitionReference.definition.id = $vars[].helm_artifact_id |
-.artifacts[2].definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
-.artifacts[3].definitionReference.connection.id = $vars[].github_sc_qutianer_id |
+(.artifacts[] | select (.alias == "_be_dev" )) .sourceId = $vars[].project_id + ":" + $vars[].be_artifact_id |
+(.artifacts[] | select (.alias == "_be_dev" )) .definitionReference.definition.id = $vars[].be_artifact_id |
+(.artifacts[] | select (.alias == "_be_dev" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+
+(.artifacts[] | select (.alias == "_helm" )) .sourceId = $vars[].project_id + ":" + $vars[].helm_artifact_id |
+(.artifacts[] | select (.alias == "_helm" )) .definitionReference.definition.id = $vars[].helm_artifact_id |
+(.artifacts[] | select (.alias == "_helm" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+
 .variableGroups = [$vars[].variable_group]

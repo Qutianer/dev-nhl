@@ -1,4 +1,4 @@
-resource "azuredevops_variable_group" "db-dev" {
+resource "azuredevops_variable_group" "db_dev" {
   project_id   = azuredevops_project.project.id
   name         = "db-dev"
   description  = ""
@@ -6,7 +6,7 @@ resource "azuredevops_variable_group" "db-dev" {
 
   variable {
     name  = "dbhost"
-    value = azurerm_mariadb_server.main.fqdn
+    value = azurerm_mariadb_server.dev.fqdn
   }
 
   variable {
@@ -16,16 +16,17 @@ resource "azuredevops_variable_group" "db-dev" {
 
   variable {
     name  = "dbuser"
-    value = "${azurerm_mariadb_server.main.administrator_login}@${azurerm_mariadb_server.main.name}"
+    value = "${azurerm_mariadb_server.dev.administrator_login}@${azurerm_mariadb_server.dev.name}"
   }
 
   variable {
     name         = "dbpass"
-    secret_value = azurerm_mariadb_server.main.administrator_login_password
+    secret_value = azurerm_mariadb_server.dev.administrator_login_password
     is_secret    = true
   }
 }
 
+/*
 resource "azuredevops_variable_group" "cert" {
   project_id   = azuredevops_project.project.id
   name         = "cert"
@@ -39,3 +40,4 @@ resource "azuredevops_variable_group" "cert" {
   }
 
 }
+*/

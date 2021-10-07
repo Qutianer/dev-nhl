@@ -1,0 +1,1 @@
+../lib/devops_k8s_sc.tf

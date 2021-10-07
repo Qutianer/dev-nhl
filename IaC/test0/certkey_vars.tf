@@ -1,0 +1,1 @@
+../lib/certkey_vars.tf
