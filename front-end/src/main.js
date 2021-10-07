@@ -40,17 +40,23 @@ const stats = {
 				elem.style.width = elem.innerHTML = progress + "%"
 			}))
 		}
-		Promise.all(prom).then(function(result){self.get_players()})
+		Promise.all(prom).then(function(result){
+			self.get_players()
+			self.get_countries()
+		})
+	},
+	get_countries() {
+		var self = this;
+		axios.get('/api/?action=get_countries')
+		.then(function (response) {self.countries = response.data;})
+		.catch(function (error) {console.log(error);});
 	}
   },
 	computed: {
 	},
   mounted() {
 	this.get_players()
-	var self = this;
-	axios.get('/api/?action=get_countries')
-	.then(function (response) {self.countries = response.data;})
-	.catch(function (error) {console.log(error);});
+	this.get_countries()
   }
 }
 

@@ -21,7 +21,7 @@ registry: "acrzt2fx0ax.azurecr.io"
 
 ingress:
   name: web
-  host: www.nhl.appw.ru
+  host: dev.nhl.appw.ru
 
 adminpass: Aa123456
 #db:
