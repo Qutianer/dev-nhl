@@ -65,9 +65,7 @@ data "azurerm_lb" "dev" {
 }
 
 resource "local_file" "dev_kube_config" {
- content = <<-EOT
-	${azurerm_kubernetes_cluster.dev.kube_admin_config_raw}
-EOT
+ content = "${azurerm_kubernetes_cluster.dev.kube_config_raw}"
  filename = "k8s_dev_config.tfvars"
 }
 
