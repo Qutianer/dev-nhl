@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azagent
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: azagent
+  env:
+    AZP_URL: https://dev.azure.com/vujo3
+    AZP_AGENT_NAME: k8sagent
+    AZP_TOKEN: ***
+  template:
+    metadata:
+      labels:
+        app: azagent
+    spec:
+      containers:
+      - name: azure_agent
+        image: cywl/azureagent:latest
+        env:
+          name: AZP_URL
+          value: https://dev.azure.com/vujo3
+          name: AZP_AGENT_NAME
+          value: k8sagent
+          name: AZP_TOKEN
+          value: 
+#        ports:
+#        - containerPort: 80
+
+
+
+
+# AZP_URL=https://dev.azure.com/vujo3 -e AZP_TOKEN=$1 -e AZP_AGENT_NAME=mydockeragent cywl/azureagent:latest

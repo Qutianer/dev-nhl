@@ -1,20 +1,11 @@
-- release tag auto
-- lints, test, quality gates
-- update countries on data load
+- monitoring
+- dev/prod
+- lints, test, quality gates: Sonar in kuber manifest?
+
+- chart
 - get chunk count before load
 
-
-
-steps:
-- task: AzureCLI@2
-  displayName: 'Azure CLI '
-  inputs:
-    azureSubscription: azurerm
-    scriptType: bash
-    scriptLocation: inlineScript
-    inlineScript: |
-     pwd
-     ls -la
-     ls -la a
-     az group list
+DONE:
+- release tag auto
+- update countries on data load
 
