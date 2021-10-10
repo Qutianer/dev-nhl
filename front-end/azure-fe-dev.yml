@@ -32,7 +32,6 @@ steps:
     exit $res
   displayName: Lint PHP files
 
-
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: 'version_tag'
