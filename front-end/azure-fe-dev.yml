@@ -14,7 +14,6 @@ variables:
 - name: testpath
   value: front-end
 # for trigger
-
 steps:
 
 #- script: VERSION_TAG=`git tag --sort=-creatordate` && echo "##vso[task.setvariable variable=VERSION_TAG]$VERSION_TAG"
