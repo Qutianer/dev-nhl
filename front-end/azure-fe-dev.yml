@@ -41,7 +41,7 @@ steps:
     buildkitd &
     sleep 10
     buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$VERSION_TAG,push=true
-
+    kill 1
 
 - task: PublishPipelineArtifact@1
   inputs:
