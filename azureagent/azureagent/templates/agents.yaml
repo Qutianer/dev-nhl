@@ -16,6 +16,7 @@ spec:
 {{- range .Values.containers }}
       - name: azureagent-{{ . }}
         image: {{ $.Values.image }}
+        imagePullPolicy: Always
         securityContext:
           privileged: true
         env:
