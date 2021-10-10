@@ -12,7 +12,9 @@ terraform apply -auto-approve
 #client_id=$( sed -rne '/client_id/s/.*= \"(.*)\"/\1/gp' terraform.tfvars )
 
 cp -f k8s_dev_config.tfvars ~/.kube/config
-
+pushd ../../azureagent
+./helm.sh
+popd
 
 echo $dt
 date
