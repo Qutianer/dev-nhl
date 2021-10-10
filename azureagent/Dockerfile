@@ -16,7 +16,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libunwind8 \
     netcat \
     libssl1.0 \
+    runc \
   && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root
+RUN curl -LO https://github.com/moby/buildkit/releases/download/v0.9.1/buildkit-v0.9.1.linux-amd64.tar.gz \
+  && tar -xf buildkit-v0.9.1.linux-amd64.tar.gz \
+  && install bin/buildkitd /usr/local/bin/buildkitd \
+  && install bin/buildctl /usr/local/bin/buildctl \
+  && rm -rf bin buildkit-v0.9.1.linux-amd64.tar.gz
 
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
   && rm -rf /var/lib/apt/lists/*

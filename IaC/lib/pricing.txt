@@ -1,0 +1,8 @@
+k8s 1 node 32.85+1.54=34.39
+control node 9.83
+acr 5
+db 27.12
+dns 0.9
+LB - type??
+IP - 2.92 type??
+vault - 0.03

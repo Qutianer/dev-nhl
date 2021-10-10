@@ -60,6 +60,29 @@ resource "azuredevops_build_definition" "fe_dev" {
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
 
+  variable_groups = [ azuredevops_variable_group.acr.id ]
+
+}
+
+resource "azuredevops_build_definition" "fe_prod" {
+  project_id = azuredevops_project.project.id
+  name       = "fe_prod"
+#  path       = "\\ExampleFolder"
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type             = "GitHub"
+    repo_id               = "Qutianer/dev-nhl"
+    branch_name           = "main"
+    yml_path              = "front-end/azure-fe-prod.yml"
+    service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
+  }
+
+  variable_groups = [ azuredevops_variable_group.acr.id ]
+
 }
 
 resource "azuredevops_build_definition" "be_dev" {
@@ -78,11 +101,35 @@ resource "azuredevops_build_definition" "be_dev" {
     yml_path              = "back-end/azure-be-dev.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
+
+  variable_groups = [ azuredevops_variable_group.acr.id ]
+
 }
 
-resource "azuredevops_build_definition" "helm" {
+resource "azuredevops_build_definition" "be_prod" {
   project_id = azuredevops_project.project.id
-  name       = "helm"
+  name       = "be_prod"
+#  path       = "\\ExampleFolder"
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type             = "GitHub"
+    repo_id               = "Qutianer/dev-nhl"
+    branch_name           = "main"
+    yml_path              = "back-end/azure-be-prod.yml"
+    service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
+  }
+
+  variable_groups = [ azuredevops_variable_group.acr.id ]
+
+}
+
+resource "azuredevops_build_definition" "helm_dev" {
+  project_id = azuredevops_project.project.id
+  name       = "helm_dev"
 #  path       = "\\ExampleFolder"
 
   ci_trigger {
@@ -93,7 +140,25 @@ resource "azuredevops_build_definition" "helm" {
     repo_type             = "GitHub"
     repo_id               = "Qutianer/dev-nhl"
     branch_name           = "dev"
-    yml_path              = "helm/azure-helm.yml"
+    yml_path              = "helm/azure-helm-dev.yml"
+    service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
+  }
+}
+
+resource "azuredevops_build_definition" "helm_prod" {
+  project_id = azuredevops_project.project.id
+  name       = "helm_prod"
+#  path       = "\\ExampleFolder"
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type             = "GitHub"
+    repo_id               = "Qutianer/dev-nhl"
+    branch_name           = "main"
+    yml_path              = "helm/azure-helm-prod.yml"
     service_connection_id = azuredevops_serviceendpoint_github.qutianer.id
   }
 }
@@ -120,13 +185,20 @@ resource "local_file" "devops_variables" {
 
 	github_sc = azuredevops_serviceendpoint_github.qutianer.id
 	azurerm_sc = azuredevops_serviceendpoint_azurerm.main.id
-	k8s_dev_sc = azuredevops_serviceendpoint_kubernetes.dev.id
 
-	helm_artifact_id = azuredevops_build_definition.helm.id
-	fe_artifact_id = azuredevops_build_definition.fe_dev.id
-	be_artifact_id = azuredevops_build_definition.be_dev.id
+	k8s_dev_sc = azuredevops_serviceendpoint_kubernetes.dev.id
+	k8s_prod_sc = azuredevops_serviceendpoint_kubernetes.prod.id
+
+	helm_dev_artifact_id = azuredevops_build_definition.helm_dev.id
+	fe_dev_artifact_id = azuredevops_build_definition.fe_dev.id
+	be_dev_artifact_id = azuredevops_build_definition.be_dev.id
+
+	helm_prod_artifact_id = azuredevops_build_definition.helm_prod.id
+	fe_prod_artifact_id = azuredevops_build_definition.fe_prod.id
+	be_prod_artifact_id = azuredevops_build_definition.be_prod.id
 
 	variable_group = azuredevops_variable_group.db_dev.id
+	variable_group = azuredevops_variable_group.db_prod.id
 
 
 })

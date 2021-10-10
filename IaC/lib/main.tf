@@ -8,7 +8,6 @@ terraform {
       source = "microsoft/azuredevops"
       version = ">=0.1.0"
     }
-
   }
 }
 
@@ -16,12 +15,21 @@ provider "azurerm" {
 	features {}
 }
 
+/**/
+data "azurerm_resource_group" "main" {
+  name     = "main"
+}
+/**/
+
+/**
+resource "azurerm_resource_group" "main" {
+  name     = "main"
+  location = "North Europe"
+}
+/**/
+
 provider "azuredevops" {
 	org_service_url = "https://dev.azure.com/vujo3"
 	personal_access_token = var.azure_devops_pat
-}
-
-data "azurerm_resource_group" "main" {
-  name     = "main"
 }
 

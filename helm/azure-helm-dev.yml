@@ -1,0 +1,26 @@
+trigger:
+  batch: true
+  branches:
+   include:
+     - dev
+  paths:
+    include:
+      - helm
+
+pool: #Default
+  vmImage: ubuntu-20.04
+
+steps:
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)/helm/dev'
+    includeRootFolder: true
+    archiveType: 'tar'
+    tarCompression: gz
+    archiveFile: '$(Build.ArtifactStagingDirectory)/helm.tgz'
+    replaceExistingArchive: true
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/helm.tgz'
+    artifact: 'helm'
+    publishLocation: 'pipeline'

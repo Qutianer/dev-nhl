@@ -1,10 +1,10 @@
 
-resource "azurerm_kubernetes_cluster" "dev" {
-  name                = "nhl-dev"
+resource "azurerm_kubernetes_cluster" "prod" {
+  name                = "nhl-prod"
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
-  dns_prefix          = "nhl-dev"
-  node_resource_group = "nhl-dev-nodes"
+  dns_prefix          = "nhl-prod"
+  node_resource_group = "nhl-prod-nodes"
 #  private_dns_zone_id = azurerm_dns_zone.dev.id
 
   default_node_pool {
@@ -20,10 +20,6 @@ resource "azurerm_kubernetes_cluster" "dev" {
   addon_profile {
     http_application_routing {
       enabled = "true"
-    }
-    oms_agent {
-      enabled = "true"
-      log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
     }
   }
 
@@ -63,13 +59,13 @@ resource "azurerm_role_assignment" "acrpull_role" {
 }
 */
 
-data "azurerm_lb" "dev" {
+data "azurerm_lb" "prod" {
   name                = "kubernetes"
-  resource_group_name = azurerm_kubernetes_cluster.dev.node_resource_group
+  resource_group_name = azurerm_kubernetes_cluster.prod.node_resource_group
 }
 
-resource "local_file" "dev_kube_config" {
- content = "${azurerm_kubernetes_cluster.dev.kube_config_raw}"
- filename = "k8s_dev_config.tfvars"
+resource "local_file" "prod_kube_config" {
+ content = "${azurerm_kubernetes_cluster.prod.kube_config_raw}"
+ filename = "k8s_prod_config.tfvars"
 }
 

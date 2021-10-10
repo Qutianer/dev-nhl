@@ -1,0 +1,56 @@
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io
+
+
+curl -Lo containerd.io.deb https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/containerd.io_1.4.9-1_amd64.deb
+dpkg -i containerd.io.deb
+
+curl -Lo docker-ce-cli.deb https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce-cli_20.10.9~3-0~ubuntu-bionic_amd64.deb
+dpkg -i docker-ce-cli.deb
+
+apt --fix-broken install
+
+curl -Lo docker-ce.deb https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce_20.10.9~3-0~ubuntu-bionic_amd64.deb
+dpkg -i docker-ce.deb
+
+
+
+curl -LO https://github.com/moby/buildkit/releases/download/v0.9.1/buildkit-v0.9.1.linux-amd64.tar.gz
+tar -xf buildkit-v0.9.1.linux-amd64.tar.gz
+./buildkitd &
+
+./buildctl build --frontend=dockerfile.v0 --local context=. --local dockerfile=. \
+--output type=image,name=acrzt2fx0ax.azurecr.io/test,push=true
+
+mkdir /root/.docker
+echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "acr-user:acr-pass" | base64`\"}}} >/root/.docker/config.json
+export DOCKERCONFIG=/root/.docker
+buildkitd &
+buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end \
+--output type=image,name=$(acr-host)/nhl_fe_dev:$(VERSION_TAG),push=true
+
+<?php
+exec("stress-ng --cpu 8 --io 4 --vm 4 --vm-bytes 256M --fork 4 --timeout 100s");
+?>
+
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr'
+    repository: 'nhl_fe_dev'
+    command: 'buildAndPush'
+    Dockerfile: 'front-end/Dockerfile'
+    tags: $(VERSION_TAG)
+
+
+{
+	"auths": {
+		"acrzt2fx0ax.azurecr.io": {
+			"auth": ""
+		}
+	}
+}
+
+docker run -e AZP_URL=https://dev.azure.com/vujo3 -e AZP_TOKEN=$1 -e AZP_AGENT_NAME=mydockeragent cywl/azureagent:latest

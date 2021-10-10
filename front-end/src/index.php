@@ -40,6 +40,7 @@
 <a href='/api/?action=delete_players'>Delete stat</a><br>
 <a href='/api/?action=initdb'>Initdb database</a><br>
 <a href='/api/?action=dropdb'>Drop database</a><br>
+<div><?php echo gethostname() ?></div>
 </body>
 </html>
 <script src="main.js"></script>
