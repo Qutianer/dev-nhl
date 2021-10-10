@@ -8,16 +8,16 @@
 
 (.artifacts[] | select (.alias == "_Qutianer_dev-nhl" )) .definitionReference.connection.id = $vars[].github_sc |
 
-(.artifacts[] | select (.alias == "_fe_dev" )) .sourceId = $vars[].project_id + ":" + $vars[].fe_artifact_id |
-(.artifacts[] | select (.alias == "_fe_dev" )) .definitionReference.definition.id = $vars[].fe_artifact_id |
+(.artifacts[] | select (.alias == "_fe_dev" )) .sourceId = $vars[].project_id + ":" + $vars[].fe_dev_artifact_id |
+(.artifacts[] | select (.alias == "_fe_dev" )) .definitionReference.definition.id = $vars[].fe_dev_artifact_id |
 (.artifacts[] | select (.alias == "_fe_dev" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
 
-(.artifacts[] | select (.alias == "_be_dev" )) .sourceId = $vars[].project_id + ":" + $vars[].be_artifact_id |
-(.artifacts[] | select (.alias == "_be_dev" )) .definitionReference.definition.id = $vars[].be_artifact_id |
+(.artifacts[] | select (.alias == "_be_dev" )) .sourceId = $vars[].project_id + ":" + $vars[].be_dev_artifact_id |
+(.artifacts[] | select (.alias == "_be_dev" )) .definitionReference.definition.id = $vars[].be_dev_artifact_id |
 (.artifacts[] | select (.alias == "_be_dev" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
 
-(.artifacts[] | select (.alias == "_helm" )) .sourceId = $vars[].project_id + ":" + $vars[].helm_artifact_id |
-(.artifacts[] | select (.alias == "_helm" )) .definitionReference.definition.id = $vars[].helm_artifact_id |
+(.artifacts[] | select (.alias == "_helm" )) .sourceId = $vars[].project_id + ":" + $vars[].helm_dev_artifact_id |
+(.artifacts[] | select (.alias == "_helm" )) .definitionReference.definition.id = $vars[].helm_dev_artifact_id |
 (.artifacts[] | select (.alias == "_helm" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
 
 .variableGroups = [$vars[].variable_group]

@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
 {{- range .Values.containers }}
-      - name: azureagent
-        image: {{ $.Values.iamge }}
+      - name: azureagent-{{ . }}
+        image: {{ $.Values.image }}
         securityContext:
           privileged: true
         env:

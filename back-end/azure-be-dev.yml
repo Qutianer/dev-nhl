@@ -7,8 +7,8 @@ trigger:
     include:
       - back-end
 
-#pool: Default
-pool:
+
+pool: #Default
   vmImage: ubuntu-20.04
 
 variables:
