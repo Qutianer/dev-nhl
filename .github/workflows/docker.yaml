@@ -1,7 +1,7 @@
 name: Build and push azure pipeline agent
 on:
   push:
-    path:
+    paths:
       - 'azureagent/image'
 jobs:
   build:
