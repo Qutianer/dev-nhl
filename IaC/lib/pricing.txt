@@ -3,6 +3,6 @@ control node 9.83
 acr 5
 db 27.12
 dns 0.9
-LB - type??
-IP - 2.92 type??
+LB - 23,25 Standard
+IP - 14.6 type??
 vault - 0.03
