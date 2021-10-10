@@ -2,7 +2,7 @@
 <head>
 <link rel="stylesheet" href="main.css">
 <script src="https://unpkg.com/vue@3.2.12/dist/vue.global.js"></script> <!-- -->
-<!-- <script src="https://unpkg.com/vue@next"></script> <!-- -->
+<!-- <script src="https://unpkg.com/vue@next"></script>  <!-- -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- -->
 <title>NHL Players stats</title>
 </head>
