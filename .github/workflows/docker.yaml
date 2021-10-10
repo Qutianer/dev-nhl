@@ -19,4 +19,4 @@ jobs:
         with:
           context: azureagent/image
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/azureagent:1.1-buildkit
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/azureagent:1.2-buildkit
