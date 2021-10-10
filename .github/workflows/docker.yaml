@@ -2,7 +2,7 @@ name: Build and push azure pipeline agent
 on:
   push:
     paths:
-      - 'azureagent/image/**'
+      - 'azureagent/image'
 jobs:
   build:
     runs-on: ubuntu-latest
