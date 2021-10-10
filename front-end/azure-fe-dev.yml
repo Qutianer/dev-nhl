@@ -7,9 +7,8 @@ trigger:
     include:
       - front-end
 
-#pool: Default
-pool:
-  vmImage: ubuntu-20.04
+pool: Default
+#  vmImage: ubuntu-20.04
 
 variables:
 - name: testpath
@@ -38,8 +37,7 @@ steps:
   echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "acr-user:acr-pass" | base64`\"}}} >/root/.docker/config.json
   export DOCKERCONFIG=/root/.docker
   buildkitd &
-  buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end \
-  --output type=image,name=$(acr-host)/nhl_fe_dev:$(VERSION_TAG),push=true
+  buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$(VERSION_TAG),push=true
 
 
 - task: PublishPipelineArtifact@1
