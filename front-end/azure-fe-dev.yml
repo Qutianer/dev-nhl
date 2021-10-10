@@ -37,6 +37,7 @@ steps:
     echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "acr-user:acr-pass" | base64`\"}}} >/root/.docker/config.json" >/root/.docker/config.json
     export DOCKERCONFIG=/root/.docker
     buildkitd &
+    pause 3
     buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$VERSION_TAG,push=true
 
 
