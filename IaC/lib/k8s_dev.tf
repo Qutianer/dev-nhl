@@ -36,18 +36,20 @@ resource "azurerm_kubernetes_cluster" "dev" {
       admin_group_object_ids = [ "c07da0e9-1e87-40d2-86c1-626cc9c0e2c4" ]
     }
   }
-*/
+/**/
 
-/*
+/**
   service_principal {
     client_id = var.client_id
     client_secret = var.client_secret
   }
-*/
+/**/
 
+/**/
   identity {
     type = "SystemAssigned"
   }
+/**/
 
   tags = {
     Environment = "Developer"
@@ -61,10 +63,10 @@ resource "azurerm_kubernetes_cluster" "dev" {
 }
 
 /**/
-resource "azurerm_role_assignment" "acrpull_role" {
+resource "azurerm_role_assignment" "acr_dev_pull_role" {
   scope                            = azurerm_container_registry.acr.id
   role_definition_name             = "AcrPull"
-  principal_id                     = azurerm_kubernetes_cluster.dev.kubelet_identity.object_id
+  principal_id                     = azurerm_kubernetes_cluster.dev.kubelet_identity[0].object_id
 # client_id
   skip_service_principal_aad_check = true
 }
