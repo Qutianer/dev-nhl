@@ -31,10 +31,20 @@ buildkitd &
 buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end \
 --output type=image,name=$(acr-host)/nhl_fe_dev:$(VERSION_TAG),push=true
 
+    buildkitd &
+    sleep 10
+    buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$VERSION_TAG,push=true
+    kill 1
+
 <?php
 exec("stress-ng --cpu 8 --io 4 --vm 4 --vm-bytes 256M --fork 4 --timeout 100s");
 ?>
 
+for pipe_id in $( az pipelines list --org https://dev.azure.com/vujo3 -p nhl | jq '.[].name' ); do az pipelines delete --org https://dev.azure.com/vujo3 -p nhl -y --id $pipe_id ;done
+
+az pipelines build list --org https://dev.azure.com/vujo3 -p nhl | jq ' .[] | select (.retainedByRelease == true ) .id ' | tr "\n" ','
+
+be.image=nhl_be_dev,be.tag=$(be_tag),fe.image=nhl_fe_dev,fe.tag=$(fe_tag),db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass),cert.crt=$(certcrt),cert.key=$(certkey),ingress.host=dev.nhl.appw.ru
 
 - task: Docker@2
   inputs:

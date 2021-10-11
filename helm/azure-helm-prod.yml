@@ -2,13 +2,13 @@ trigger:
   batch: true
   branches:
    include:
-     - prod
+     - main
   paths:
     include:
       - helm
 
-pool: #Default
-  vmImage: ubuntu-20.04
+pool: Default
+#  vmImage: ubuntu-20.04
 
 steps:
 - task: ArchiveFiles@2

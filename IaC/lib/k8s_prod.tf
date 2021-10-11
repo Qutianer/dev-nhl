@@ -21,6 +21,10 @@ resource "azurerm_kubernetes_cluster" "prod" {
     http_application_routing {
       enabled = "true"
     }
+    oms_agent {
+      enabled = "true"
+      log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
+    }
   }
 
 /**
@@ -34,9 +38,15 @@ resource "azurerm_kubernetes_cluster" "prod" {
   }
 */
 
+/*
   service_principal {
     client_id = var.client_id
     client_secret = var.client_secret
+  }
+*/
+
+  identity {
+    type = "SystemAssigned"
   }
 
   tags = {

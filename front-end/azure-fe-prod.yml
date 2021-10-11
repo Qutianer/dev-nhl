@@ -7,9 +7,8 @@ trigger:
     include:
       - front-end
 
-#pool: Default
-pool:
-  vmImage: ubuntu-20.04
+pool: Default
+#  vmImage: ubuntu-20.04
 
 variables:
 - name: testpath
@@ -33,13 +32,11 @@ steps:
     exit $res
   displayName: Lint PHP files
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'acr'
-    repository: 'nhl_fe_prod'
-    command: 'buildAndPush'
-    Dockerfile: 'front-end/Dockerfile'
-    tags: $(VERSION_TAG)
+- script: |
+    mkdir /root/.docker
+    echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "$(acr-user):$(acr-pass)" | base64 -w0`\"}}}" >/root/.docker/config.json
+    export DOCKERCONFIG=/root/.docker
+    buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_prod:$VERSION_TAG,push=true
 
 - task: PublishPipelineArtifact@1
   inputs:
