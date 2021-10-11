@@ -10,7 +10,7 @@
   "lastRelease": null,
   "variables": {},
   "variableGroups": [
-    "20"
+    "22"
   ],
   "environments": [
     {
@@ -84,7 +84,7 @@
             "artifactsDownloadInput": {
               "downloadInputs": []
             },
-            "queueId": "302",
+            "queueId": "311",
             "demands": [],
             "enableAccessToken": false,
             "timeoutInMinutes": 0,
@@ -130,7 +130,7 @@
               "overrideInputs": {},
               "condition": "succeeded()",
               "inputs": {
-                "ConnectedServiceName": "e1bda1e9-1b77-4713-9c63-4fc957a80a36",
+                "ConnectedServiceName": "64bcf84e-df4e-43a6-887c-ee2355a877fb",
                 "KeyVaultName": "keyvault-531b25k8",
                 "SecretsFilter": "*",
                 "RunAsPreJob": "false"
@@ -155,7 +155,7 @@
                 "azureResourceGroup": "",
                 "kubernetesCluster": "",
                 "useClusterAdmin": "false",
-                "kubernetesServiceEndpoint": "c95db91c-4501-4f26-aa03-c1704dd38c9b",
+                "kubernetesServiceEndpoint": "9c140876-4a91-46f1-a0ab-47aa0f786944",
                 "namespace": "default",
                 "azureSubscriptionEndpointForACR": "",
                 "azureResourceGroupForACR": "",
@@ -165,8 +165,8 @@
                 "chartName": "",
                 "chartPath": "$(System.DefaultWorkingDirectory)/_helm/helm/helm.tgz",
                 "version": "",
-                "releaseName": "nhl-dev",
-                "overrideValues": "be.tag=$(be_tag),fe.tag=$(fe_tag),db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass),cert.crt=$(certcrt),cert.key=$(certkey)",
+                "releaseName": "nhl",
+                "overrideValues": "be.image=nhl_be_dev,be.tag=$(be_tag),fe.image=nhl_fe_dev,fe.tag=$(fe_tag),db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass),cert.crt=$(certcrt),cert.key=$(certkey),ingress.host=dev.nhl.appw.ru",
                 "valueFile": "",
                 "destination": "$(Build.ArtifactStagingDirectory)",
                 "canaryimage": "false",
@@ -278,7 +278,7 @@
   ],
   "artifacts": [
     {
-      "sourceId": "6e88e8d1-3d1c-4644-a9df-f3d936939395:84",
+      "sourceId": "7bda7375-7637-4a46-9ee6-0ce6936f6b97:90",
       "type": "Build",
       "alias": "_be_dev",
       "definitionReference": {
@@ -303,7 +303,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "84",
+          "id": "90",
           "name": "be_dev"
         },
         "definitions": {
@@ -315,7 +315,7 @@
           "name": "False"
         },
         "project": {
-          "id": "6e88e8d1-3d1c-4644-a9df-f3d936939395",
+          "id": "7bda7375-7637-4a46-9ee6-0ce6936f6b97",
           "name": "nhl"
         },
         "repository": {
@@ -326,7 +326,7 @@
       "isRetained": false
     },
     {
-      "sourceId": "6e88e8d1-3d1c-4644-a9df-f3d936939395:83",
+      "sourceId": "7bda7375-7637-4a46-9ee6-0ce6936f6b97:89",
       "type": "Build",
       "alias": "_fe_dev",
       "definitionReference": {
@@ -351,7 +351,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "83",
+          "id": "89",
           "name": "fe_dev"
         },
         "definitions": {
@@ -363,7 +363,7 @@
           "name": "False"
         },
         "project": {
-          "id": "6e88e8d1-3d1c-4644-a9df-f3d936939395",
+          "id": "7bda7375-7637-4a46-9ee6-0ce6936f6b97",
           "name": "nhl"
         },
         "repository": {
@@ -374,7 +374,7 @@
       "isRetained": false
     },
     {
-      "sourceId": "6e88e8d1-3d1c-4644-a9df-f3d936939395:80",
+      "sourceId": "7bda7375-7637-4a46-9ee6-0ce6936f6b97:86",
       "type": "Build",
       "alias": "_helm",
       "definitionReference": {
@@ -399,7 +399,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "80",
+          "id": "86",
           "name": "helm"
         },
         "definitions": {
@@ -411,7 +411,7 @@
           "name": "False"
         },
         "project": {
-          "id": "6e88e8d1-3d1c-4644-a9df-f3d936939395",
+          "id": "7bda7375-7637-4a46-9ee6-0ce6936f6b97",
           "name": "nhl"
         },
         "repository": {
@@ -443,7 +443,7 @@
           "name": ""
         },
         "connection": {
-          "id": "deec1a50-4f22-477b-a82a-b409c7356620",
+          "id": "f44f005f-5a83-44c6-9b39-9f289dd509c3",
           "name": "qutianer_pat"
         },
         "defaultVersionSpecific": {
