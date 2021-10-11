@@ -60,14 +60,15 @@ resource "azurerm_kubernetes_cluster" "dev" {
   }
 }
 
-/**
+/**/
 resource "azurerm_role_assignment" "acrpull_role" {
   scope                            = azurerm_container_registry.acr.id
   role_definition_name             = "AcrPull"
-  principal_id                     = "53b52726-810c-4579-a761-9977243338a3"
+  principal_id                     = azurerm_kubernetes_cluster.dev.kubelet_identity.object_id
+# client_id
   skip_service_principal_aad_check = true
 }
-*/
+/**/
 
 data "azurerm_lb" "dev" {
   name                = "kubernetes"
