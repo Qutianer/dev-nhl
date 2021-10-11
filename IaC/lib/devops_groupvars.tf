@@ -73,7 +73,7 @@ resource "azuredevops_variable_group" "acr" {
   variable {
     name  = "acr-pass"
     value = var.client_secret
-    is_secret = true
+#    is_secret = true
   }
 
 }
