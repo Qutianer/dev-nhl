@@ -30,7 +30,15 @@ spec:
 #        - containerPort: 80
 {{- end }}    
 
-
+---
 
 # AZP_URL=https://dev.azure.com/vujo3 -e AZP_TOKEN=$1 -e AZP_AGENT_NAME=mydockeragent cywl/azureagent:latest
-
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: azagent
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: azagent

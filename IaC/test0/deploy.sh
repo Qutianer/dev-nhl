@@ -16,5 +16,12 @@ pushd ../../azureagent
 ./helm.sh
 popd
 
+pushd ../..
+./trigger.sh front-end
+./trigger.sh back-end
+./trigger.sh helm
+../comment.sh 'initial deploy'
+popd
+
 echo $dt
 date

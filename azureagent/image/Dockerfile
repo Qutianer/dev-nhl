@@ -29,7 +29,7 @@ RUN curl -LO https://github.com/moby/buildkit/releases/download/v0.9.1/buildkit-
   && rm -rf bin buildkit-v0.9.1.linux-amd64.tar.gz
 
 RUN curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.22.2/bin/linux/amd64/kubectl \
-  && chmod +x /usr/local/bin
+  && chmod +x /usr/local/bin/kubectl
 
 RUN curl -Lo helm.tar.gz https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz \
   && tar -xf helm.tar.gz \
