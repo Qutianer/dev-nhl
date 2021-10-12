@@ -36,7 +36,7 @@ steps:
     mkdir /root/.docker
     echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "$(acr-user):$(acr-pass)" | base64 -w0`\"}}}" >/root/.docker/config.json
     export DOCKERCONFIG=/root/.docker
-    buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_be_prod:$VERSION_TAG,push=true
+    buildctl build --frontend=dockerfile.v0 --local context=back-end --local dockerfile=back-end --output type=image,name=$(acr-host)/nhl_be_prod:$VERSION_TAG,push=true
 
 - task: PublishPipelineArtifact@1
   inputs:
