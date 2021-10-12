@@ -63,3 +63,7 @@ be.image=nhl_be_dev,be.tag=$(be_tag),fe.image=nhl_fe_dev,fe.tag=$(fe_tag),db.hos
 }
 
 docker run -e AZP_URL=https://dev.azure.com/vujo3 -e AZP_TOKEN=$1 -e AZP_AGENT_NAME=mydockeragent cywl/azureagent:latest
+
+
+https://dev.azure.com/vujo3/_apis/public/hooks/externalEvents?publisherId=github&channelId=6984892e-96c8-42ae-a584-630bb9ec6df4&api-version=6.1-preview
+

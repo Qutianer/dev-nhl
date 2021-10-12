@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl1.0 \
     runc \
     php-cli \
+    mysql-client \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
@@ -26,6 +27,15 @@ RUN curl -LO https://github.com/moby/buildkit/releases/download/v0.9.1/buildkit-
   && install bin/buildkitd /usr/local/bin/buildkitd \
   && install bin/buildctl /usr/local/bin/buildctl \
   && rm -rf bin buildkit-v0.9.1.linux-amd64.tar.gz
+
+RUN curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.22.2/bin/linux/amd64/kubectl \
+  && chmod +x /usr/local/bin
+
+RUN curl -Lo helm.tar.gz https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz \
+  && tar -xf helm.tar.gz \
+  && install linux-amd64/helm /usr/local/bin/ \
+  && rm -f helm.tar.gz \
+  && rm -rf linux-amd64
 
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
   && rm -rf /var/lib/apt/lists/*
