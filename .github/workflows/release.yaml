@@ -16,9 +16,9 @@ jobs:
 #        exclusions: '*.git*'
     - name: Archive release
       run: |
-#        pushd control
-#        tar -caf ../control.tar.gz --exclude-vcs --exclude-vcs-ignores *
-#        popd
+        #        pushd control
+        #        tar -caf ../control.tar.gz --exclude-vcs --exclude-vcs-ignores *
+        #        popd
         pushd IaC
         tar -caf ../infrastructure.tar.gz --exclude-vcs --exclude-vcs-ignores *
         popd
