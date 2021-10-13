@@ -3,13 +3,12 @@
 dt=$(date)
 terraform init
 terraform apply -auto-approve
-./jq_filter.sh release-v5-src.json >release-v5.json
-./api_add.sh release-v5.json
-
+jq --slurpfile vars devops_vars.tfvars -f jq_filter_dev release-dev-v5-src.json >release-dev-v5.json
+./api_add.sh release-dev-v5.json
+jq --slurpfile vars devops_vars.tfvars -f jq_filter_prod release-prod-v5-src.json >release-prod-v5.json
+./api_add.sh release-prod-v5.json
 
 #ansible-playbook main.yaml
-
-#client_id=$( sed -rne '/client_id/s/.*= \"(.*)\"/\1/gp' terraform.tfvars )
 
 cp -f k8s_dev_config.tfvars ~/.kube/config
 pushd ../../azureagent

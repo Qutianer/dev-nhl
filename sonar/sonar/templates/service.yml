@@ -1,0 +1,25 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.fe.label }}
+spec:
+  selector:
+    app: {{ .Values.fe.label }}
+  ports:
+    - protocol: TCP
+      port: 80
+  type: ClusterIP
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.be.label }}
+spec:
+  selector:
+    app: {{ .Values.be.label }}
+  ports:
+    - protocol: TCP
+      port: 80
+  type: ClusterIP

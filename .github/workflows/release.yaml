@@ -1,35 +1,34 @@
 name: Create release with archives
 on:
   push:
-    tags:
-      - '*'
+    paths:
+      - 'IaC/**'
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-      #    - name: Archive Release
-      #      uses: thedoctor0/zip-release@master
-      #      with:
-      #        type: 'tar'
-      #        filename: 'release.tar.gz'
-      #        exclusions: '*.git*'
+#    - name: Archive Release
+#      uses: thedoctor0/zip-release@master
+#      with:
+#        type: 'tar'
+#        filename: 'release.tar.gz'
+#        exclusions: '*.git*'
     - name: Archive release
       run: |
-        pushd control
-        tar -caf ../control.tar.gz --exclude-vcs --exclude-vcs-ignores *
-        popd
-        pushd infrastructure
+#        pushd control
+#        tar -caf ../control.tar.gz --exclude-vcs --exclude-vcs-ignores *
+#        popd
+        pushd IaC
         tar -caf ../infrastructure.tar.gz --exclude-vcs --exclude-vcs-ignores *
         popd
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         path: |
-          control.tar.gz
           infrastructure.tar.gz
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "control.tar.gz,infrastructure.tar.gz"
+        artifacts: "infrastructure.tar.gz"
         token: ${{ secrets.GITHUB_TOKEN }}
