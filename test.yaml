@@ -23,7 +23,7 @@ steps:
     SonarQube: 'sonar'
     scannerMode: 'CLI'
     configMode: 'manual'
-    cliProjectKey: 'nhl'
+    cliProjectKey: 'nhl:dev'
     cliSources: '.'
 - task: SonarQubeAnalyze@4
 - task: SonarQubePublish@4
