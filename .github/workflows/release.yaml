@@ -23,8 +23,7 @@ jobs:
         tar -caf ../infrastructure.tar.gz --exclude-vcs --exclude-vcs-ignores *
         popd
         tag=`cat iac/version`
-        echo $tag
-        echo "::set-env name=tag::$tag"
+        echo "tag=$tag" >> $GITHUB_ENV
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
