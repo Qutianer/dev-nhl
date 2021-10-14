@@ -44,15 +44,15 @@
         - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
   - name: Install packages
     yum:
-      name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io, python-docker-py, kubectl, git]
+      name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io, python-docker-py, docker-compose, kubectl, git] # 
       state: latest
-  - name: Download docker-compose
-    shell: |
-      curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-      chmod +x /usr/local/bin/docker-compose
-    args:
-      creates:
-        /usr/local/bin/docker-compose
+#  - name: Download docker-compose
+#    shell: |
+#      curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#      chmod +x /usr/local/bin/docker-compose
+#    args:
+#      creates:
+#        /usr/local/bin/docker-compose
 
 #  - name: Create dir for infrastructure
 #    file:
@@ -84,7 +84,11 @@
   - sysctl:
       name: vm.max_map_count
       value: 262144
-  - name: Run `docker-compose up` again
-    docker_compose:
-      project_src: sonar
+#  - name: Run docker-compose up again
+#    docker_compose:
+#      project_src: sonar
+  - name: Run docker-compose up again
+    shell: |
+      cd /root/sonar
+      docker-compose up -d
 
