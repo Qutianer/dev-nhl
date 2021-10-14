@@ -33,5 +33,5 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "infrastructure.tar.gz"
-        tag: $tag
+        tag: ${{ env.tag }}
         token: ${{ secrets.GITHUB_TOKEN }}
