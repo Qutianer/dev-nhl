@@ -2,6 +2,24 @@
 - name: Prepare control node
   hosts: [all]
   tasks:
+  - name: Enable swap
+    lineinfile:
+      path: /etc/waagent.conf
+      regexp: '^ResourceDisk.EnableSwap='
+      line: ResourceDisk.EnableSwap=y
+    register: sw_en
+  - name: Set swap size
+    lineinfile:
+      path: /etc/waagent.conf
+      regexp: '^ResourceDisk.SwapSizeMB='
+      line: ResourceDisk.SwapSizeMB=2048
+    register: sw_size
+  - name: Restart agent
+    service:
+      name: waagent
+      state: restarted
+    when: sw_en.changed or sw_size.changed
+
   - name: Install epel
     yum:
       name: [ epel-release, yum-utils ]
@@ -28,6 +46,14 @@
     yum:
       name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io, python-docker-py, kubectl, git]
       state: latest
+  - name: Download docker-compose
+    shell: |
+      curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      chmod +x /usr/local/bin/docker-compose
+    args:
+      creates:
+        /usr/local/bin/docker-compose
+
 #  - name: Create dir for infrastructure
 #    file:
 #      path: /root/school/infrastructure
@@ -46,8 +72,7 @@
   - name: Copy credentials for terraform
     copy:
       src: ./creds
-      dest: /root/creds
-
+      dest: /root
   - name: Create dir for ssh
     file:
       path: /root/.ssh/
@@ -56,4 +81,10 @@
   - name: Generate ssh keys
     openssh_keypair:
       path: /root/.ssh/id_rsa
+  - sysctl:
+      name: vm.max_map_count
+      value: 262144
+  - name: Run `docker-compose up` again
+    docker_compose:
+      project_src: sonar
 
