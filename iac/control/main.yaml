@@ -1,8 +1,6 @@
 ---
 - name: Prepare control node
   hosts: [all]
-  vars_files:
-    - secrets.cred
   tasks:
   - name: Install epel
     yum:
@@ -47,8 +45,8 @@
       remote_src: yes
   - name: Copy credentials for terraform
     copy:
-      src: ./spn.auto.tfvars
-      dest: /root/spn.auto.tfvars
+      src: ./creds
+      dest: /root/creds
 
   - name: Create dir for ssh
     file:
@@ -58,9 +56,4 @@
   - name: Generate ssh keys
     openssh_keypair:
       path: /root/.ssh/id_rsa
-  - name: Log into private registry and force re-authorization
-    docker_login:
-      registry: "{{ acr_url }}"
-      username: "{{ client_id }}"
-      password: "{{ client_secret }}"
 

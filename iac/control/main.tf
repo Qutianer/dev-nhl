@@ -11,41 +11,42 @@ provider "azurerm" {
 	features {}
 }
 
-module "creds" {
-	source = "./creds"
+data "azurerm_resource_group" "main" {
+  name     = "main"
+#  location = "North Europe"
 }
 
-resource "azurerm_resource_group" "main" {
-  name     = "main"
-  location = "North Europe"
+locals {
+  rg_name = data.azurerm_resource_group.main.name
+  rg_location = data.azurerm_resource_group.main.location
 }
 
 resource "azurerm_virtual_network" "main" {
   name                = "main"
   address_space       = ["192.168.0.0/16"]
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = local.rg_name
+  location            = local.rg_location
 }
 
 resource "azurerm_subnet" "main" {
   name                 = "internal"
-  resource_group_name  = azurerm_resource_group.main.name
+  resource_group_name  = local.rg_name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["192.168.0.0/24"]
 }
 
 resource "azurerm_public_ip" "main" {
   name                    = "pubip"
-  location                = azurerm_resource_group.main.location
-  resource_group_name     = azurerm_resource_group.main.name
+  resource_group_name     = local.rg_name
+  location                = local.rg_location
   allocation_method       = "Dynamic"
   idle_timeout_in_minutes = 30
 }
 
 resource "azurerm_network_interface" "control" {
   name                = "control"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  resource_group_name = local.rg_name
+  location            = local.rg_location
 
   ip_configuration {
     name                          = "internal"
@@ -57,8 +58,8 @@ resource "azurerm_network_interface" "control" {
 
 resource "azurerm_linux_virtual_machine" "control" {
   name                = "control-node"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  resource_group_name = local.rg_name
+  location            = local.rg_location
   size                = "Standard_B1s"
   admin_username      = "adminuser"
   network_interface_ids = [
