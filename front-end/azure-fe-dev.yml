@@ -7,8 +7,8 @@ trigger:
     include:
       - front-end
 
-pool: Default
-#  vmImage: ubuntu-20.04
+pool: #Default
+  vmImage: ubuntu-20.04
 
 variables:
 - name: testpath
