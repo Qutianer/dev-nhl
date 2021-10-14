@@ -2,7 +2,7 @@ name: Create release with archives
 on:
   push:
     paths:
-      - 'IaC/**'
+      - 'iac/version'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
         #        pushd control
         #        tar -caf ../control.tar.gz --exclude-vcs --exclude-vcs-ignores *
         #        popd
-        pushd IaC
+        pushd iac
         tar -caf ../infrastructure.tar.gz --exclude-vcs --exclude-vcs-ignores *
         popd
     - name: Upload artifact

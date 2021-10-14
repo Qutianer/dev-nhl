@@ -1,1 +1,0 @@
-../lib/devops_arm_sc.tf
