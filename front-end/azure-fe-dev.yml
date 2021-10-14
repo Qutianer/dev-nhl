@@ -47,3 +47,15 @@ steps:
     targetPath: 'version_tag'
     artifact: 'version_tag'
     publishLocation: 'pipeline'
+
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonar'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'nhl'
+    cliSources: '.'
+- task: SonarQubeAnalyze@4
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
