@@ -194,3 +194,6 @@ resource "local_file" "devops_variables" {
  filename = "devops_vars.tfvars"
 }
 
+output "project_id" {
+value = azuredevops_project.project.id
+}

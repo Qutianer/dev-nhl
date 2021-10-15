@@ -25,9 +25,18 @@ steps:
     configMode: 'manual'
     cliProjectKey: 'nhl'
     cliSources: '.'
-- powershell: |
-    $params = "$env:SONARQUBE_SCANNER_PARAMS" -replace '"sonar.branch.name":"[\w,/,-]*"\,?'
-    Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+- script: |
+    echo "$SONARQUBE_SCANNER_PARAMS"
+    params=`echo "$SONARQUBE_SCANNER_PARAMS" | sed 's/"sonar.branch.name":"[-a-z0-9/]*",//ig'`
+    echo "$params"
+    echo "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+    echo "$SONARQUBE_SCANNER_PARAMS"
+  displayName: Define SONARQUBE_SCANNER_PARAMS variable
+
+
+#- powershell: |
+#    $params = "SONARQUBE_SCANNER_PARAMS" -replace '"sonar.branch.name":"[\w,/,-]*"\,?'
+#    Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
 
 - task: SonarQubeAnalyze@4
 - task: SonarQubePublish@4

@@ -111,7 +111,7 @@
               "overrideInputs": {},
               "condition": "succeeded()",
               "inputs": {
-                "script": "fe_tag=$(cat _fe_dev/version_tag/version_tag) && echo \"##vso[task.setvariable variable=fe_tag]$fe_tag\"\nbe_tag=$(cat _be_dev/version_tag/version_tag) && echo \"##vso[task.setvariable variable=be_tag]$be_tag\"\n",
+                "script": "fe_tag=$(cat _fe_prod/version_tag/version_tag) && echo \"##vso[task.setvariable variable=fe_tag]$fe_tag\"\nbe_tag=$(cat _be_prod/version_tag/version_tag) && echo \"##vso[task.setvariable variable=be_tag]$be_tag\"\n",
                 "workingDirectory": "",
                 "failOnStderr": "false"
               }
@@ -155,7 +155,7 @@
                 "azureResourceGroup": "",
                 "kubernetesCluster": "",
                 "useClusterAdmin": "false",
-                "kubernetesServiceEndpoint": "581e1889-41ea-4729-9eb9-bbccb93394a2",
+                "kubernetesServiceEndpoint": "0a405b9f-8f4c-4c62-9049-e14f8de9c2fc",
                 "namespace": "default",
                 "azureSubscriptionEndpointForACR": "",
                 "azureResourceGroupForACR": "",
@@ -166,7 +166,7 @@
                 "chartPath": "$(System.DefaultWorkingDirectory)/_helm/helm/helm.tgz",
                 "version": "",
                 "releaseName": "nhl",
-                "overrideValues": "be.image=nhl_be_dev,be.tag=$(be_tag),fe.image=nhl_fe_dev,fe.tag=$(fe_tag),db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass),cert.crt=$(certcrt),cert.key=$(certkey),ingress.host=dev.nhl.appw.ru",
+                "overrideValues": "be.image=nhl_be_prod,be.tag=$(be_tag),fe.image=nhl_fe_prod,fe.tag=$(fe_tag),db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass),cert.crt=$(certcrt),cert.key=$(certkey),ingress.host=www.nhl.appw.ru",
                 "valueFile": "",
                 "destination": "$(Build.ArtifactStagingDirectory)",
                 "canaryimage": "false",
@@ -278,9 +278,9 @@
   ],
   "artifacts": [
     {
-      "sourceId": "95b6fdbd-b305-401c-aecf-c080d970af62:157",
+      "sourceId": "95b6fdbd-b305-401c-aecf-c080d970af62:156",
       "type": "Build",
-      "alias": "_be_dev",
+      "alias": "_be_prod",
       "definitionReference": {
         "artifactSourceDefinitionUrl": {
           "id": "https://dev.azure.com/vujo3/_permalink/_build/index?collectionId=ec859aa6-f1a5-496a-ad14-c7907795f2d1&projectId=635c5807-5b67-4172-8be7-cae9035de9da&definitionId=64",
@@ -303,8 +303,8 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "157",
-          "name": "be_dev"
+          "id": "156",
+          "name": "be_prod"
         },
         "definitions": {
           "id": "",
@@ -326,9 +326,9 @@
       "isRetained": false
     },
     {
-      "sourceId": "95b6fdbd-b305-401c-aecf-c080d970af62:155",
+      "sourceId": "95b6fdbd-b305-401c-aecf-c080d970af62:158",
       "type": "Build",
-      "alias": "_fe_dev",
+      "alias": "_fe_prod",
       "definitionReference": {
         "artifactSourceDefinitionUrl": {
           "id": "https://dev.azure.com/vujo3/_permalink/_build/index?collectionId=ec859aa6-f1a5-496a-ad14-c7907795f2d1&projectId=635c5807-5b67-4172-8be7-cae9035de9da&definitionId=65",
@@ -351,8 +351,8 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "155",
-          "name": "fe_dev"
+          "id": "158",
+          "name": "fe_prod"
         },
         "definitions": {
           "id": "",
@@ -374,7 +374,7 @@
       "isRetained": false
     },
     {
-      "sourceId": "95b6fdbd-b305-401c-aecf-c080d970af62:153",
+      "sourceId": "95b6fdbd-b305-401c-aecf-c080d970af62:154",
       "type": "Build",
       "alias": "_helm",
       "definitionReference": {
@@ -399,7 +399,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "153",
+          "id": "154",
           "name": "helm"
         },
         "definitions": {
@@ -431,8 +431,8 @@
           "name": ""
         },
         "branch": {
-          "id": "dev",
-          "name": "dev"
+          "id": "main",
+          "name": "main"
         },
         "checkoutNestedSubmodules": {
           "id": "True",
@@ -477,12 +477,12 @@
   ],
   "triggers": [
     {
-      "artifactAlias": "_be_dev",
+      "artifactAlias": "_be_prod",
       "triggerConditions": [],
       "triggerType": "artifactSource"
     },
     {
-      "artifactAlias": "_fe_dev",
+      "artifactAlias": "_fe_prod",
       "triggerConditions": [],
       "triggerType": "artifactSource"
     },
@@ -492,7 +492,7 @@
       "triggerType": "artifactSource"
     }
   ],
-  "releaseNameFormat": "dev-v$(rev:r)",
+  "releaseNameFormat": "prod-v$(rev:r)",
   "tags": [],
   "properties": {
     "DefinitionCreationSource": {
@@ -509,7 +509,7 @@
     }
   },
   "id": 0,
-  "name": "release-dev",
+  "name": "release-prod",
   "path": "\\",
   "projectReference": null,
   "url": "https://vsrm.dev.azure.com/vujo3/635c5807-5b67-4172-8be7-cae9035de9da/_apis/Release/definitions/1",
