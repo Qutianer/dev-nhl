@@ -32,11 +32,30 @@ steps:
     exit $res
   displayName: Lint PHP files
 
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonar'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'nhl'
+    cliSources: './back-end'
+- script: |
+    echo "$SONARQUBE_SCANNER_PARAMS"
+    params=`echo "$SONARQUBE_SCANNER_PARAMS" | sed 's/"sonar.branch.name":"[-a-z0-9/]*",//ig'`
+    echo "$params"
+    echo "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+  displayName: Define SONARQUBE_SCANNER_PARAMS variable
+- task: SonarQubeAnalyze@4
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
+
 - script: |
     mkdir /root/.docker
     echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "$(acr-user):$(acr-pass)" | base64 -w0`\"}}}" >/root/.docker/config.json
     export DOCKERCONFIG=/root/.docker
     buildctl build --frontend=dockerfile.v0 --local context=back-end --local dockerfile=back-end --output type=image,name=$(acr-host)/nhl_be_dev:$VERSION_TAG,push=true
+  displayName: Build and push image
 
 - task: PublishPipelineArtifact@1
   inputs:
