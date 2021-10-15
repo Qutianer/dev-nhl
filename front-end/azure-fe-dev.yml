@@ -50,16 +50,13 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 
-- script: |
-    mkdir /root/.docker
-    echo "one"
-    echo -n '$(acr-user):$(acr-pass)' | base64 -w0
-    echo "two"
-    echo -n "$acr-user:$acr-pass" | base64 -w0
-    echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "$(acr-user):$(acr-pass)" | base64 -w0`\"}}}" >/root/.docker/config.json
-    export DOCKERCONFIG=/root/.docker
-    buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$VERSION_TAG,push=true
-  displayName: Build and push image
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr'
+    repository: 'nhl_fe_dev'
+    command: 'buildAndPush'
+    Dockerfile: 'front-end/Dockerfile'
+    tags: $(VERSION_TAG)
 
 - task: PublishPipelineArtifact@1
   inputs:

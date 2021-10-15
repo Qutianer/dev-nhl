@@ -46,6 +46,18 @@ az pipelines build list --org https://dev.azure.com/vujo3 -p nhl | jq ' .[] | se
 
 be.image=nhl_be_dev,be.tag=$(be_tag),fe.image=nhl_fe_dev,fe.tag=$(fe_tag),db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass),cert.crt=$(certcrt),cert.key=$(certkey),ingress.host=dev.nhl.appw.ru
 
+
+- script: |
+    mkdir /root/.docker
+    echo "one"
+    echo -n '$(acr-user):$(acr-pass)' | base64 -w0
+    echo "two"
+    echo -n "$acr-user:$acr-pass" | base64 -w0
+    echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "$(acr-user):$(acr-pass)" | base64 -w0`\"}}}" >/root/.docker/config.json
+    export DOCKERCONFIG=/root/.docker
+    buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$VERSION_TAG,push=true
+  displayName: Build and push image
+
 - task: Docker@2
   inputs:
     containerRegistry: 'acr'
