@@ -19,5 +19,5 @@ jobs:
         with:
           context: iac/azureagent/image
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/azureagent:1.2-pack
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/azureagent:1.3-pack
 
