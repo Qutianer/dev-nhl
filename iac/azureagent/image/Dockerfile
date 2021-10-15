@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     iputils-ping \
     libcurl4 \
-    libicu60 \
     libunwind8 \
     netcat \
     libssl1.0 \
