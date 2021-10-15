@@ -19,10 +19,13 @@
       name: waagent
       state: restarted
     when: sw_en.changed or sw_size.changed
-
   - name: Install epel
     yum:
-      name: [ epel-release, yum-utils ]
+      name: [ epel-release ]
+      state: latest
+  - name: Install yum-utils
+    yum:
+      name: [ yum-utils ]
       state: latest
   - name: Add hashicorp repository
     shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
@@ -42,9 +45,18 @@
       gpgkey:
         - https://packages.cloud.google.com/yum/doc/yum-key.gpg
         - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  - name: Add Microsoft Azure-cli repository
+    yum_repository:
+      name: azure-cli
+      description: Azure CLI
+      baseurl: https://packages.microsoft.com/yumrepos/azure-cli
+      repo_gpgcheck: yes
+      gpgcheck: yes
+      gpgkey:
+        - https://packages.microsoft.com/keys/microsoft.asc
   - name: Install packages
     yum:
-      name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io, python-docker-py, docker-compose, kubectl, git] # 
+      name: [ ansible, terraform, docker-ce, docker-ce-cli, containerd.io, python-docker-py, docker-compose, kubectl, git, azure-cli] # 
       state: latest
 #  - name: Download docker-compose
 #    shell: |
@@ -71,7 +83,7 @@
       remote_src: yes
   - name: Copy credentials for terraform
     copy:
-      src: ./creds
+      src: ./creds/
       dest: /root
   - name: Create dir for ssh
     file:
