@@ -32,6 +32,25 @@ steps:
     exit $res
   displayName: Lint PHP files
 
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonar'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'nhl'
+    cliSources: '.'
+- script: |
+    echo "$SONARQUBE_SCANNER_PARAMS"
+    params=`echo "$SONARQUBE_SCANNER_PARAMS" | sed 's/"sonar.branch.name":"[-a-z0-9/]*",//ig'`
+    echo "$params"
+    echo "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+    echo "$SONARQUBE_SCANNER_PARAMS"
+  displayName: Define SONARQUBE_SCANNER_PARAMS variable
+- task: SonarQubeAnalyze@4
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
+
 - script: |
     mkdir /root/.docker
     echo "one"
