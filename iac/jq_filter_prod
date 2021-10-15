@@ -1,0 +1,23 @@
+.id=0 |
+.createdBy = null |
+.modifiedBy = null |
+.lastRelease = null |
+.environments[0].deployPhases[0].deploymentInput.queueId = $vars[].queuee_id  |
+(.environments[0].deployPhases[0].workflowTasks[] | select (.name == "helm upgrade")) .inputs.kubernetesServiceEndpoint = $vars[].k8s_prod_sc |
+(.environments[0].deployPhases[0].workflowTasks[] | select (.name == "Azure Key Vault: keyvault-531b25k8")) .inputs.ConnectedServiceName = $vars[].azurerm_sc |
+
+(.artifacts[] | select (.alias == "_Qutianer_dev-nhl" )) .definitionReference.connection.id = $vars[].github_sc |
+
+(.artifacts[] | select (.alias == "_fe_prod" )) .sourceId = $vars[].project_id + ":" + $vars[].fe_prod_artifact_id |
+(.artifacts[] | select (.alias == "_fe_prod" )) .definitionReference.definition.id = $vars[].fe_prod_artifact_id |
+(.artifacts[] | select (.alias == "_fe_prod" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+
+(.artifacts[] | select (.alias == "_be_prod" )) .sourceId = $vars[].project_id + ":" + $vars[].be_prod_artifact_id |
+(.artifacts[] | select (.alias == "_be_prod" )) .definitionReference.definition.id = $vars[].be_prod_artifact_id |
+(.artifacts[] | select (.alias == "_be_prod" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+
+(.artifacts[] | select (.alias == "_helm" )) .sourceId = $vars[].project_id + ":" + $vars[].helm_prod_artifact_id |
+(.artifacts[] | select (.alias == "_helm" )) .definitionReference.definition.id = $vars[].helm_prod_artifact_id |
+(.artifacts[] | select (.alias == "_helm" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
+
+.variableGroups = [$vars[].variable_group]

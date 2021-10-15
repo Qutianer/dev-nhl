@@ -1,5 +1,0 @@
-pwd
-ls -la _tests/version_tag
-VERSION_TAG=$(cat _tests/version_tag/version_tag)
-
-echo = $VERSION_TAG
