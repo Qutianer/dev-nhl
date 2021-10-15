@@ -7,8 +7,8 @@ trigger:
     include:
       - front-end
 
-pool: Default
-#  vmImage: ubuntu-20.04
+pool: #Default
+  vmImage: ubuntu-20.04
 
 variables:
 - name: testpath
@@ -38,13 +38,12 @@ steps:
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'nhl'
-    cliSources: '.'
+    cliSources: './front-end'
 - script: |
     echo "$SONARQUBE_SCANNER_PARAMS"
     params=`echo "$SONARQUBE_SCANNER_PARAMS" | sed 's/"sonar.branch.name":"[-a-z0-9/]*",//ig'`
     echo "$params"
     echo "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
-    echo "$SONARQUBE_SCANNER_PARAMS"
   displayName: Define SONARQUBE_SCANNER_PARAMS variable
 - task: SonarQubeAnalyze@4
 - task: SonarQubePublish@4
@@ -60,6 +59,7 @@ steps:
     echo "{\"auths\":{\"$(acr-host)\":{\"auth\":\"`echo -n "$(acr-user):$(acr-pass)" | base64 -w0`\"}}}" >/root/.docker/config.json
     export DOCKERCONFIG=/root/.docker
     buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$VERSION_TAG,push=true
+  displayName: Build and push image
 
 - task: PublishPipelineArtifact@1
   inputs:
