@@ -1,0 +1,31 @@
+sudo yum update -y
+
+export LANG=en_US.UTF8
+
+mkdir agent
+cd agent
+curl https://vstsagentpackage.azureedge.net/agent/2.193.1/vsts-agent-linux-x64-2.193.1.tar.gz -o agent.tar.gz
+tar -xf agent.tar.gz
+
+# ??
+# sudo ./bin/installdependencies.sh 
+
+./config.sh
+
+
+yum check-update ; yum install -y gcc libffi-devel python36-devel openssl-devel
+curl -L https://aka.ms/InstallAzureCli | bash
+
+
+rpm --import https://packages.microsoft.com/keys/microsoft.asc
+echo -e "[azure-cli]
+name=Azure CLI
+baseurl=https://packages.microsoft.com/yumrepos/azure-cli
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc" >/etc/yum.repos.d/azure-cli.repo
+
+dnf install azure-cli
+
+
+    libicu60 \

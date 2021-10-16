@@ -19,7 +19,7 @@ pushd ..
 ./trigger.sh front-end
 ./trigger.sh back-end
 ./trigger.sh helm
-#../comment.sh 'initial deploy'
+#./comment.sh 'initial deploy'
 popd
 
 echo $dt
