@@ -25,6 +25,8 @@ done
 
 echo "done"
 
+sleep 10
+
 data="login=admin&password=$pass&previousPassword=$defpass"
 api_func="api/users/change_password"
 curl -X POST -svu $user:$defpass "http://$server:9000/$api_func?$data"
