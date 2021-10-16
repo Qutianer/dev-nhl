@@ -1,7 +1,8 @@
 - monitoring
-- dev/prod
 - lints, test, quality gates: Sonar in kuber manifest?
-- k8s dev->prod upd
+
+- cleanup build dirs
+- grafana deploy
 
 - chart
 - get chunk count before load
@@ -9,4 +10,5 @@
 DONE:
 - release tag auto
 - update countries on data load
+- dev/prod
 
