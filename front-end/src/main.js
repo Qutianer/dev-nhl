@@ -59,7 +59,7 @@ const stats = {
 	this.get_players()
 	this.get_countries()
   },
-  updated(): function(){update_chart(main_chart,this.players)}
+  updated() {update_chart(main_chart,this.players)}
 }
 
 /* *
