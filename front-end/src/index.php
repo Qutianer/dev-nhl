@@ -10,7 +10,7 @@
 <body>
 <table>
 <tr><td>
-<img src='nhl.png' height='100px'>
+<img align=center src='nhl.png' height='100px'>
 <div id="stats">
 	<table border="1" cellspacing='0'>
 	<thead>
@@ -24,14 +24,14 @@
 	</select>&nbsp&nbsp&nbsp
 	<select v-model='playcountry' @change='get_players()'>
 	<option>all</option>
-	<option>United states</option>
+	<option>United States</option>
 	<option>Canada</option>
-	</select><br>
+	</select><br><br>
 	<input type='radio' name='limit' value='3'>3&nbsp&nbsp&nbsp
 	<input type='radio' name='limit' value='5' checked>5&nbsp&nbsp&nbsp
 	<input type='radio' name='limit' value='10'>10<br>
 	<br>
-	<input v-model="day_start" size='5'> - <input v-model="day_end" size='5'><br><br>
+	<input v-model="day_start" size='3'> - <input v-model="day_end" size='3'><br><br>
 	Loaded {{loaded_days}} of {{ndays}}<br><br>
 	<div id="myProgress">
 		<div id="myBar"></div>

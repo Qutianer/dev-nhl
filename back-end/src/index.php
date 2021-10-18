@@ -232,14 +232,18 @@ if($datekey >= 2)break;
 						$db->real_connect($db_host, $db_user, $db_pass, $db_name);
 
 //						$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
-						$query = "SELECT fullname,SUM(goals) as goals FROM goals
+						$query = "SELECT DISTINCT goals.id,fullname,SUM(goals) as goals FROM goals
 JOIN players ON players.player_id = goals.player_id";
 						if(isset($_GET["country"]))$query .= " AND players.birthCountry = \"{$_GET["country"]}\"";
 						if(isset($_GET["playcountry"]))$query .= " JOIN venues ON venues.name = goals.venue AND venues.country = '{$_GET["playcountry"]}'";
 						$query .= " GROUP BY goals.player_id ORDER BY goals DESC LIMIT ";
 						if(isset($_GET["limit"]))$query .= $_GET["limit"];
 						else $query .= "10";
-
+/*
+SELECT DISTINCT goals.id,fullname,goals, venue FROM goals JOIN players ON players.player_id = goals.player_id
+JOIN venues ON venues.name = goals.venue
+ORDER BY fullname;
+*/
 //						echo $query;
 						$result = $db->query($query);
 						echo json_encode($result->fetch_all(MYSQLI_ASSOC));
