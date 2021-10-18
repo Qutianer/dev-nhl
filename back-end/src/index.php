@@ -238,7 +238,7 @@ JOIN players ON players.player_id = goals.player_id";
 						if(isset($_GET["playcountry"]))$query .= " JOIN venues ON venues.name = goals.venue AND venues.country = '{$_GET["playcountry"]}'";
 						$query .= " GROUP BY goals.player_id ORDER BY goals DESC LIMIT ";
 						if(isset($_GET["limit"]))$query .= $_GET["limit"];
-						else $query = "10";
+						else $query .= "10";
 
 //						echo $query;
 						$result = $db->query($query);
