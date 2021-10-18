@@ -9,8 +9,8 @@
 </head>
 <body>
 <table>
-<tr><td colspan=2 ><img src='nhl.png' height='100px'></td></tr>
-<tr><td>
+<tr>
+<img src='nhl.png' height='100px'></td>
 <div id="stats">
 	<table border="1" cellspacing='0'>
 	<thead>
@@ -26,12 +26,12 @@
 	<option>all</option>
 	<option>United states</option>
 	<option>Canada</option>
-	</select>&nbsp&nbsp&nbsp
+	</select><br>
 	<input type='radio' name='limit' value='3'>3&nbsp&nbsp&nbsp
 	<input type='radio' name='limit' value='5' checked>5&nbsp&nbsp&nbsp
 	<input type='radio' name='limit' value='10'>10<br>
 	<br>
-	<input v-model="day_start"> - <input v-model="day_end"><br><br>
+	<input v-model="day_start" size=5> - <input v-model="day_end" size=5><br><br>
 	Loaded {{loaded_days}} of {{ndays}}<br><br>
 	<div id="myProgress">
 		<div id="myBar"></div>
