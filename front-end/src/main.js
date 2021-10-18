@@ -68,12 +68,12 @@ const stats = {
 	  day_end: 1,
 	  loaded_days: 0,
     }
-  }, /*
+  }, /* */
   watch: {
     players(val,oldval){
       update_chart(main_chart,this.players)
     }
-  }, */
+  }, /* */
   methods: {
 	get_players() {
 		var self = this;
