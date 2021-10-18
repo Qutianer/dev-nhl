@@ -27,6 +27,9 @@ spec:
             name: {{ .Values.be.label }}
             port:
               number: 80
+  - host: grafana.nhl.appw.ru
+    http:
+      paths:
       - path: /
         pathType: Prefix
         backend:
