@@ -10,7 +10,7 @@
 <body>
 <table>
 <tr><td>
-<img src='nhl.png' height='100px'></td>
+<img src='nhl.png' height='100px'>
 <div id="stats">
 	<table border="1" cellspacing='0'>
 	<thead>
