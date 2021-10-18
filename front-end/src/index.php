@@ -9,7 +9,7 @@
 </head>
 <body>
 <table>
-<tr><td colspan=2 heigth='100px'><img src='nhl.png' heigth='100px'></td></tr>
+<tr><td colspan=2 ><img src='nhl.png' height='100px'></td></tr>
 <tr><td>
 <div id="stats">
 	<table border="1" cellspacing='0'>
