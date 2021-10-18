@@ -9,7 +9,7 @@
 </head>
 <body>
 <table>
-<tr><td colspan=2><img src='nhl.png' heigth='100px'></td></tr>
+<tr><td colspan=2 heigth='100px'><img src='nhl.png' heigth='100px'></td></tr>
 <tr><td>
 <div id="stats">
 	<table border="1" cellspacing='0'>
@@ -38,7 +38,7 @@
 	</div><br>
 	<button @click='load_data'>Load data</button>
 </div>
-</td><td>
+</td><td width='60%'>
 <div width="70vw" height="70vh" style="width:70vw;height:70vh;background:#F0F0F0">
 <canvas id="myChart"></canvas></div>
 </td></tr></table>
