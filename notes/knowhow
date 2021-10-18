@@ -36,16 +36,9 @@ buildctl build --frontend=dockerfile.v0 --local context=front-end --local docker
     buildctl build --frontend=dockerfile.v0 --local context=front-end --local dockerfile=front-end --output type=image,name=$(acr-host)/nhl_fe_dev:$VERSION_TAG,push=true
     kill 1
 
-<?php
-exec("stress-ng --cpu 8 --io 4 --vm 4 --vm-bytes 256M --fork 4 --timeout 100s");
-?>
-
 for pipe_id in $( az pipelines list --org https://dev.azure.com/vujo3 -p nhl | jq '.[].name' ); do az pipelines delete --org https://dev.azure.com/vujo3 -p nhl -y --id $pipe_id ;done
 
 az pipelines build list --org https://dev.azure.com/vujo3 -p nhl | jq ' .[] | select (.retainedByRelease == true ) .id ' | tr "\n" ','
-
-be.image=nhl_be_dev,be.tag=$(be_tag),fe.image=nhl_fe_dev,fe.tag=$(fe_tag),db.host=$(dbhost),db.name=$(dbname),db.user=$(dbuser),db.pass=$(dbpass),cert.crt=$(certcrt),cert.key=$(certkey),ingress.host=dev.nhl.appw.ru
-
 
 - script: |
     mkdir /root/.docker
@@ -78,5 +71,13 @@ docker run -e AZP_URL=https://dev.azure.com/vujo3 -e AZP_TOKEN=$1 -e AZP_AGENT_N
 
 kubectl -n default delete pods --field-selector=status.phase=Failed
 
-https://dev.azure.com/vujo3/_apis/public/hooks/externalEvents?publisherId=github&channelId=6984892e-96c8-42ae-a584-630bb9ec6df4&api-version=6.1-preview
+################################################## OMS agent state
+
+addon_profile.oms_agent.oms_agent_identity.
+                      {
+                        "client_id": "be23e164-fcd5-45ee-95b6-751252d2c1a6",
+                        "object_id": "9008350f-078e-4d47-b0db-b5d8a0ece622",
+                        "user_assigned_identity_id": "/subscriptions/****/resourcegroups/nhl-dev-nodes/providers/Microsoft.ManagedIdentity/userAssignedIdentities/omsagent-nhl-dev"
+                      }
+Monitoring Metrics Publisher
 

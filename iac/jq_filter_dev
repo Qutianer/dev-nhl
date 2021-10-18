@@ -20,4 +20,4 @@
 (.artifacts[] | select (.alias == "_helm" )) .definitionReference.definition.id = $vars[].helm_dev_artifact_id |
 (.artifacts[] | select (.alias == "_helm" )) .definitionReference.project = {"id": $vars[].project_id, "name": $vars[].project_name} |
 
-.variableGroups = [$vars[].variable_group]
+.variableGroups = [$vars[].vg_dev]

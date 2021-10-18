@@ -1,0 +1,74 @@
+<html>
+<head><title>Chart test</title>
+<script src="chart.min.js"></script>
+<script>
+/*
+document.addEventListener("DOMContentLoaded", () => {
+		update_chart(main_chart,vue)
+});
+*/
+</script>
+</head>
+<body>
+<div width="70vw" height="70vh" style="width:70vw;height:70vh;background:#F0F0F0">
+<canvas id="myChart"></canvas></div>
+</body>
+<script>
+
+data = [
+{'fullname':'abcccc aaaaa0', 'goals': 45},
+{'fullname':'abcccc aaaaa1', 'goals': 43},
+{'fullname':'abcccc aaaaa2', 'goals': 40},
+{'fullname':'abcccc aaaaa3', 'goals': 35},
+{'fullname':'abcccc aaaaa4', 'goals': 30},
+]
+
+function update_chart(chart,datas) {
+	var labels = []
+	var xdata = []
+	datas.forEach( (data) => {
+		labels.push(data.fullname)
+		xdata.push(data.goals)
+	})
+	chart.data.labels = labels
+	chart.data.datasets[0].data = xdata
+	chart.update()
+}
+
+
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var main_chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    	datasets: [{
+		label: 'goals',
+		data: [ 30, 20, 10, 10 ],
+		backgroundColor: 'rgba(0,0,255,0.5)',
+	}],
+    	labels: [ 'one','two','three','four']
+	},
+	options:{
+		scales: {
+			yAxes: [{
+				id: 'left-axis',
+				type: 'linear',
+				position: 'left',
+				beginAtZero: 'true',
+			}]
+		},
+		plugins: {
+			legend: {
+				display: false,
+//				position: 'bottom',
+			}
+		},
+		maintainAspectRatio:false
+//		responsive:false
+		}
+	});
+
+update_chart(main_chart,data)
+</script>
+</html>

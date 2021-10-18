@@ -62,12 +62,21 @@ resource "azurerm_kubernetes_cluster" "dev" {
   }
 }
 
-resource "azurerm_role_assignment" "acr_dev_pull_role" {
+resource "azurerm_role_assignment" "acr_dev_pull" {
   scope                            = azurerm_container_registry.acr.id
   role_definition_name             = "AcrPull"
   principal_id                     = azurerm_kubernetes_cluster.dev.kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
 }
+
+/* */
+resource "azurerm_role_assignment" "k8s_dev_monitor" {
+  scope                            = azurerm_kubernetes_cluster.dev.id
+  role_definition_name             = "Monitoring Metrics Publisher"
+  principal_id                     = azurerm_kubernetes_cluster.dev.addon_profile[0].oms_agent[0].oms_agent_identity[0].object_id
+  skip_service_principal_aad_check = true
+}
+/* */
 
 data "azurerm_lb" "dev" {
   name                = "kubernetes"

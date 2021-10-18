@@ -10,6 +10,9 @@ trigger:
 pool: Default
 #  vmImage: ubuntu-20.04
 
+workspace:
+  clean: all
+
 variables:
 - name: testpath
   value: front-end

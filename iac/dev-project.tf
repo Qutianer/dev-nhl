@@ -185,8 +185,8 @@ resource "local_file" "devops_variables" {
 	fe_prod_artifact_id = azuredevops_build_definition.fe_prod.id
 	be_prod_artifact_id = azuredevops_build_definition.be_prod.id
 
-	variable_group = azuredevops_variable_group.db_dev.id
-	variable_group = azuredevops_variable_group.db_prod.id
+	vg_dev = azuredevops_variable_group.db_dev.id
+	vg_prod = azuredevops_variable_group.db_prod.id
 
 
 })

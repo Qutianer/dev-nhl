@@ -43,6 +43,7 @@ const stats = {
 		Promise.all(prom).then(function(result){
 			self.get_players()
 			self.get_countries()
+			update_chart(main_chart,self.players)
 		})
 	},
 	get_countries() {
@@ -59,5 +60,63 @@ const stats = {
 	this.get_countries()
   }
 }
+
+/* *
+data = [
+{'fullname':'abcccc aaaaa0', 'goals': 45},
+{'fullname':'abcccc aaaaa1', 'goals': 43},
+{'fullname':'abcccc aaaaa2', 'goals': 40},
+{'fullname':'abcccc aaaaa3', 'goals': 35},
+{'fullname':'abcccc aaaaa4', 'goals': 30},
+]
+/* */
+
+function update_chart(chart,datas) {
+	var labels = []
+	var xdata = []
+	datas.forEach( (data) => {
+		labels.push(data.fullname)
+		xdata.push(data.goals)
+	})
+	chart.data.labels = labels
+	chart.data.datasets[0].data = xdata
+	chart.update()
+}
+
+
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var main_chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    	datasets: [{
+		label: 'goals',
+		data: [ 30, 20, 10, 10 ],
+		backgroundColor: 'rgba(0,0,255,0.5)',
+	}],
+    	labels: [ 'one','two','three','four']
+	},
+	options:{
+		scales: {
+			yAxes: [{
+				id: 'left-axis',
+				type: 'linear',
+				position: 'left',
+				beginAtZero: 'true',
+			}]
+		},
+		plugins: {
+			legend: {
+				display: false,
+//				position: 'bottom',
+			}
+		},
+		maintainAspectRatio:false
+//		responsive:false
+		}
+	});
+
+//update_chart(main_chart,data)
 
 Vue.createApp(stats).mount('#stats')

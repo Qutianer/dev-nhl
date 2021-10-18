@@ -1,3 +1,5 @@
+INSTALL AGENT
+
 sudo yum update -y
 
 export LANG=en_US.UTF8
@@ -12,10 +14,11 @@ tar -xf agent.tar.gz
 
 ./config.sh
 
-
 yum check-update ; yum install -y gcc libffi-devel python36-devel openssl-devel
 curl -L https://aka.ms/InstallAzureCli | bash
 
+
+INSTALL CLI
 
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[azure-cli]
@@ -27,5 +30,3 @@ gpgkey=https://packages.microsoft.com/keys/microsoft.asc" >/etc/yum.repos.d/azur
 
 dnf install azure-cli
 
-
-    libicu60 \

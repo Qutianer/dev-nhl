@@ -4,11 +4,13 @@
 <script src="https://unpkg.com/vue@3.2.12/dist/vue.global.js"></script> <!-- -->
 <!-- <script src="https://unpkg.com/vue@next"></script>  <!-- -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- -->
+<script src="chart.min.js"></script>
 <title>NHL Players stats</title>
 </head>
 <body>
 <table>
-</table>
+<tr><td colspan=2><img src='nhl.png' heigth='100px'></td></tr>
+<tr><td>
 <div id="stats">
 	<table border="1" cellspacing='0'>
 	<thead>
@@ -36,7 +38,10 @@
 	</div><br>
 	<button @click='load_data'>Load data</button>
 </div>
-<br>
+</td><td>
+<div width="70vw" height="70vh" style="width:70vw;height:70vh;background:#F0F0F0">
+<canvas id="myChart"></canvas></div>
+</td></tr></table>
 <a href='/api/?action=delete_players'>Delete stat</a><br>
 <a href='/api/?action=initdb'>Initdb database</a><br>
 <a href='/api/?action=dropdb'>Drop database</a><br>
