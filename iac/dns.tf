@@ -21,3 +21,21 @@ resource "azurerm_dns_a_record" "nhl_dev" {
   target_resource_id  = data.azurerm_lb.dev.frontend_ip_configuration[1].public_ip_address_id
 }
 
+resource "azurerm_dns_cname_record" "nhl_sonar" {
+  name                = "sonar"
+  zone_name           = azurerm_dns_zone.nhl.name
+  resource_group_name = data.azurerm_resource_group.main.name
+  ttl                 = 300
+  record              = "dev.nhl.appw.ru"
+#  target_resource_id  = azurerm_dns_a_record.nhl_dev.id
+}
+
+resource "azurerm_dns_cname_record" "nhl_grafana" {
+  name                = "grafana"
+  zone_name           = azurerm_dns_zone.nhl.name
+  resource_group_name = data.azurerm_resource_group.main.name
+  ttl                 = 300
+  record              = "dev.nhl.appw.ru"
+#  target_resource_id  = azurerm_dns_a_record.nhl_dev.id
+}
+

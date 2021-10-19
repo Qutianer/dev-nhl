@@ -3,6 +3,9 @@
 - cleanup build dirs
 - grafana deploy
 
+- project build retention
+- project release retention
+
 - center logo in left column
 3-5-10 - br
 cunks - smaller
@@ -11,6 +14,7 @@ update chart on filter change
 
 - chart
 - get chunk count before load
+- peering
 
 DONE:
 - release tag auto

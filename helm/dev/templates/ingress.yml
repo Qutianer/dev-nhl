@@ -37,3 +37,13 @@ spec:
             name: grafana
             port:
               number: 3000
+  - host: sonar.nhl.appw.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sonar
+            port:
+              number: 9000
