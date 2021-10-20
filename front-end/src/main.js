@@ -120,6 +120,8 @@ const stats = {
   mounted() {
 	this.get_players()
 	this.get_countries()
+	var self = this;
+	axios.get('/api/?action=get_lastseasonstat').then(function (response){self.ndays = response.data.days})
   }
 //  updated: function() {update_chart(main_chart,this.players)}
 }
