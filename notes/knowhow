@@ -81,3 +81,7 @@ addon_profile.oms_agent.oms_agent_identity.
                       }
 Monitoring Metrics Publisher
 
+
+
+./queue.sh `jq ".be_dev_artifact_id" devops_vars.tfvars | tr -d '"'`
+

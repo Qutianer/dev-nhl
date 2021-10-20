@@ -4,6 +4,10 @@
 - project release retention
 - peering
 
+- move sonar helm
+ helm install --set sonar_ip=192.168.0.4 sonar sonar
+- rename queue id
+
 - 3-5-10 feature
 - chart - only int
 - get chunk count before load

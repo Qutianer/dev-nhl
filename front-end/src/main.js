@@ -67,6 +67,7 @@ const stats = {
 	  day_start: 0,
 	  day_end: 1,
 	  loaded_days: 0,
+	  limit: 10,
     }
   }, /* */
   watch: {
