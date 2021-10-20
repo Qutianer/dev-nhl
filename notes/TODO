@@ -1,20 +1,12 @@
-- monitoring ?
-
-- cleanup build dirs
-- grafana deploy
-
+- monitoring - prometric exporters
+- cleanup build dirs. check
 - project build retention
 - project release retention
-
-- center logo in left column
-3-5-10 - br
-cunks - smaller
-chart - no dots
-update chart on filter change
-
-- chart
-- get chunk count before load
 - peering
+
+- 3-5-10 feature
+- chart - only int
+- get chunk count before load
 
 DONE:
 - release tag auto
@@ -22,4 +14,8 @@ DONE:
 - dev/prod
 - fix: variables in release
 - lints, test, quality gates: Sonar in kuber manifest
+- grafana deploy
+- update chart on filter change
+- chart
+
 

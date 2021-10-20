@@ -80,6 +80,7 @@ const stats = {
 		var request = '';
 		if(self.country != 'all')request += '&country=' + self.country
 		if(self.playcountry != 'all')request += '&playcountry=' + self.playcountry
+		if(self.limit != '10')request += '&limit=' + self.limit
 		axios.get('/api/?action=get' + request)
 		.then(function (response){self.players = response.data})
 		.catch(function (error) {console.log(error);});

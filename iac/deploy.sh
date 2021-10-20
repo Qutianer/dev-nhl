@@ -16,9 +16,9 @@ pushd azureagent
 popd
 
 pushd ..
-./trigger.sh front-end
-./trigger.sh back-end
-./trigger.sh helm
+#./trigger.sh front-end
+#./trigger.sh back-end
+#./trigger.sh helm
 #./comment.sh 'initial deploy'
 popd
 

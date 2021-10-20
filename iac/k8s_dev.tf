@@ -13,7 +13,7 @@ resource "azurerm_kubernetes_cluster" "dev" {
     node_count = 2
     min_count = 2
     max_count = 4
-    vm_size    = "Standard_B2ms"
+    vm_size    = "Standard_B2s"
     os_disk_size_gb = "30"
   }
 

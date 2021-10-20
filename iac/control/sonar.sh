@@ -40,7 +40,8 @@ curl -X POST -svu $user:$pass "http://$server:9000/$api_func?$data"
 data="name=nhl"
 api_func="api/user_tokens/generate"
 token=`curl -X POST -svu $user:$pass "http://$server:9000/$api_func?$data" | jq .token | tr -d '"'`
-echo "sonar_server = \"http://$server:9000\"" >../sonar.auto.tfvars
+#echo "sonar_server = \"http://$server:9000\"" >../sonar.auto.tfvars
+echo "sonar_server = \"http://sonar:9000\"" >../sonar.auto.tfvars
 echo "sonar_pat = \"$token\"" >>../sonar.auto.tfvars
 
 # token=`echo '{"login":"admin","name":"nhl","token":"ca73bcc7371dbac571c4ff7f43ce0f626cc324ce","createdAt":"2021-10-16T13:46:58+0000"}' | jq .token | tr -d '"'`

@@ -1,4 +1,5 @@
-k8s 1 node 32.85+1.54=34.39
+k8s 1 node 34.44
+68.02
 control node 9.83
 acr 5
 db 27.12

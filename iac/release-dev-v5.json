@@ -10,7 +10,7 @@
   "lastRelease": null,
   "variables": {},
   "variableGroups": [
-    "85"
+    "88"
   ],
   "environments": [
     {
@@ -84,7 +84,7 @@
             "artifactsDownloadInput": {
               "downloadInputs": []
             },
-            "queueId": "482",
+            "queueId": "491",
             "demands": [],
             "enableAccessToken": false,
             "timeoutInMinutes": 0,
@@ -130,7 +130,7 @@
               "overrideInputs": {},
               "condition": "succeeded()",
               "inputs": {
-                "ConnectedServiceName": "e866051c-3a26-4f9e-840b-2a697960a292",
+                "ConnectedServiceName": "5720d0bc-06dd-41bc-963a-42f78e0dd340",
                 "KeyVaultName": "keyvault-531b25k8",
                 "SecretsFilter": "*",
                 "RunAsPreJob": "false"
@@ -155,7 +155,7 @@
                 "azureResourceGroup": "",
                 "kubernetesCluster": "",
                 "useClusterAdmin": "false",
-                "kubernetesServiceEndpoint": "a18d65cc-35d4-4ba4-ab10-2d940e763164",
+                "kubernetesServiceEndpoint": "3e289114-21b9-49c3-8458-dacf28a875af",
                 "namespace": "default",
                 "azureSubscriptionEndpointForACR": "",
                 "azureResourceGroupForACR": "",
@@ -278,7 +278,7 @@
   ],
   "artifacts": [
     {
-      "sourceId": "8b8e2c02-7462-45b1-806c-b350578a0ee5:207",
+      "sourceId": "4faeb3a8-d02a-485c-8cf5-9585bd292962:213",
       "type": "Build",
       "alias": "_be_dev",
       "definitionReference": {
@@ -303,7 +303,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "207",
+          "id": "213",
           "name": "be_dev"
         },
         "definitions": {
@@ -315,7 +315,7 @@
           "name": "False"
         },
         "project": {
-          "id": "8b8e2c02-7462-45b1-806c-b350578a0ee5",
+          "id": "4faeb3a8-d02a-485c-8cf5-9585bd292962",
           "name": "nhl"
         },
         "repository": {
@@ -326,7 +326,7 @@
       "isRetained": false
     },
     {
-      "sourceId": "8b8e2c02-7462-45b1-806c-b350578a0ee5:206",
+      "sourceId": "4faeb3a8-d02a-485c-8cf5-9585bd292962:212",
       "type": "Build",
       "alias": "_fe_dev",
       "definitionReference": {
@@ -351,7 +351,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "206",
+          "id": "212",
           "name": "fe_dev"
         },
         "definitions": {
@@ -363,7 +363,7 @@
           "name": "False"
         },
         "project": {
-          "id": "8b8e2c02-7462-45b1-806c-b350578a0ee5",
+          "id": "4faeb3a8-d02a-485c-8cf5-9585bd292962",
           "name": "nhl"
         },
         "repository": {
@@ -374,7 +374,7 @@
       "isRetained": false
     },
     {
-      "sourceId": "8b8e2c02-7462-45b1-806c-b350578a0ee5:202",
+      "sourceId": "4faeb3a8-d02a-485c-8cf5-9585bd292962:208",
       "type": "Build",
       "alias": "_helm",
       "definitionReference": {
@@ -399,7 +399,7 @@
           "name": "Latest"
         },
         "definition": {
-          "id": "202",
+          "id": "208",
           "name": "helm"
         },
         "definitions": {
@@ -411,7 +411,7 @@
           "name": "False"
         },
         "project": {
-          "id": "8b8e2c02-7462-45b1-806c-b350578a0ee5",
+          "id": "4faeb3a8-d02a-485c-8cf5-9585bd292962",
           "name": "nhl"
         },
         "repository": {
@@ -443,7 +443,7 @@
           "name": ""
         },
         "connection": {
-          "id": "ee97f9a9-8d77-43a8-b396-318f00c4d009",
+          "id": "da42c765-1462-44b2-a542-595b5dcd850f",
           "name": "qutianer_pat"
         },
         "defaultVersionSpecific": {

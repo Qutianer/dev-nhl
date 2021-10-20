@@ -27,12 +27,13 @@
 	<option>United States</option>
 	<option>Canada</option>
 	</select><br><br>
-	<input type='radio' name='limit' value='3'>3&nbsp&nbsp&nbsp
-	<input type='radio' name='limit' value='5' checked>5&nbsp&nbsp&nbsp
-	<input type='radio' name='limit' value='10'>10<br>
+	<input type='radio' name='limit' value='3' v-model='limit' @change='get_players()'>3&nbsp&nbsp&nbsp
+	<input type='radio' name='limit' value='5' v-model='limit' @change='get_players()'>5&nbsp&nbsp&nbsp
+	<input type='radio' name='limit' value='10' checked  v-model='limit' @change='get_players()'>10<br>
 	<br>
+	Total days: {{ ndays }}
 	<input v-model="day_start" size='3'> - <input v-model="day_end" size='3'><br><br>
-	Loaded {{loaded_days}} of {{ndays}}<br><br>
+	Loaded {{loaded_days}} days of {{ ( day_end - day_start ) }}<br><br>
 	<div id="myProgress">
 		<div id="myBar"></div>
 	</div><br>
