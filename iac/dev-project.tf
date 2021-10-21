@@ -177,13 +177,13 @@ resource "local_file" "devops_variables" {
 	k8s_dev_sc = azuredevops_serviceendpoint_kubernetes.dev.id
 	k8s_prod_sc = azuredevops_serviceendpoint_kubernetes.prod.id
 
-	helm_dev_artifact_id = azuredevops_build_definition.helm_dev.id
-	fe_dev_artifact_id = azuredevops_build_definition.fe_dev.id
-	be_dev_artifact_id = azuredevops_build_definition.be_dev.id
+	helm_dev = azuredevops_build_definition.helm_dev.id
+	fe_dev = azuredevops_build_definition.fe_dev.id
+	be_dev = azuredevops_build_definition.be_dev.id
 
-	helm_prod_artifact_id = azuredevops_build_definition.helm_prod.id
-	fe_prod_artifact_id = azuredevops_build_definition.fe_prod.id
-	be_prod_artifact_id = azuredevops_build_definition.be_prod.id
+	helm_prod = azuredevops_build_definition.helm_prod.id
+	fe_prod = azuredevops_build_definition.fe_prod.id
+	be_prod = azuredevops_build_definition.be_prod.id
 
 	vg_dev = azuredevops_variable_group.db_dev.id
 	vg_prod = azuredevops_variable_group.db_prod.id

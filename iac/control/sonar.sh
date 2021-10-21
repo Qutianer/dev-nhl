@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sonar_ip=`cat private_ip_address`
+helm upgrade -i --set sonar_ip=$sonar_ip sonar sonar
+
 user='admin'
 defpass='admin'
 pass='ZAQ!xsw2'

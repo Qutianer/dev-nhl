@@ -31,7 +31,7 @@
 	<input type='radio' name='limit' value='5' v-model='limit' @change='get_players()'>5&nbsp&nbsp&nbsp
 	<input type='radio' name='limit' value='10' checked  v-model='limit' @change='get_players()'>10<br>
 	<br>
-	Total days: {{ ndays }}
+	Total days: {{ ndays }}<br>
 	<input v-model="day_start" size='3'> - <input v-model="day_end" size='3'><br><br>
 	Loaded {{loaded_days}} days of {{ ( day_end - day_start ) }}<br><br>
 	<div id="myProgress">

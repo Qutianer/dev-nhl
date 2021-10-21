@@ -10,11 +10,19 @@ resource "azurerm_kubernetes_cluster" "dev" {
   default_node_pool {
     name       = "mainpool"
     enable_auto_scaling = "true"
-    node_count = 2
-    min_count = 2
+    node_count = 1
+    min_count = 1
     max_count = 4
-    vm_size    = "Standard_B2s"
+    vm_size    = "Standard_B2ms"
     os_disk_size_gb = "30"
+    vnet_subnet_id = azurerm_subnet.k8s-dev.id
+  }
+
+  network_profile {
+    network_plugin = "azure"
+    service_cidr = "10.100.1.0/24"
+    dns_service_ip = "10.100.1.10"
+    docker_bridge_cidr = "10.100.2.1/24"
   }
 
   addon_profile {

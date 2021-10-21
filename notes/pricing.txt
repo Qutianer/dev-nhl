@@ -4,6 +4,9 @@ control node 9.83
 acr 5
 db 27.12
 dns 0.9
-LB - 23,25 Standard
-IP - 14.6 type??
+LB - 23,25 Standard 18.26
+IP - 14.6 type?? +2.92
 vault - 0.03
+peering - 4
+
+resource merging

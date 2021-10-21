@@ -23,16 +23,16 @@ locals {
 
 resource "azurerm_virtual_network" "main" {
   name                = "main"
-  address_space       = ["192.168.0.0/16"]
+  address_space       = ["10.0.0.0/8"]
   resource_group_name = local.rg_name
   location            = local.rg_location
 }
 
 resource "azurerm_subnet" "main" {
-  name                 = "internal"
+  name                 = "main"
   resource_group_name  = local.rg_name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = ["192.168.0.0/24"]
+  address_prefixes     = ["10.0.0.0/16"]
 }
 
 resource "azurerm_public_ip" "main" {

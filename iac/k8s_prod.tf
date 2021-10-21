@@ -15,8 +15,16 @@ resource "azurerm_kubernetes_cluster" "prod" {
     max_count = 3
     vm_size    = "Standard_B2s"
     os_disk_size_gb = "30"
+#    vnet_subnet_id = azurerm_subnet.k8s-prod.id
   }
-
+/*
+  network_profile {
+    network_plugin = "azure"
+    service_cidr = "10.101.1.0/24"
+    dns_service_ip = "10.101.1.10"
+    docker_bridge_cidr = "10.101.2.1/24"
+  }
+*/
   addon_profile {
     http_application_routing {
       enabled = "true"

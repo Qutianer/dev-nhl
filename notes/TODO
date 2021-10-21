@@ -1,16 +1,12 @@
 - monitoring - prometric exporters
 - cleanup build dirs. check
-- project build retention
-- project release retention
 - peering
 
-- move sonar helm
- helm install --set sonar_ip=192.168.0.4 sonar sonar
+
 - rename queue id
 
 - 3-5-10 feature
 - chart - only int
-- get chunk count before load
 
 DONE:
 - release tag auto
@@ -21,5 +17,8 @@ DONE:
 - grafana deploy
 - update chart on filter change
 - chart
-
+- project build retention - not impossible
+- project release retention
+- get chunk count before load
+- move sonar helm
 
