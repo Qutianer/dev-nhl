@@ -1,11 +1,5 @@
 - monitoring - prometric exporters
 - cleanup build dirs. check
-- peering
-
-
-- rename queue id
-
-- 3-5-10 feature
 - chart - only int
 
 DONE:
@@ -21,4 +15,7 @@ DONE:
 - project release retention
 - get chunk count before load
 - move sonar helm
+- 3-5-10 feature
+- rename queue id
+- peering
 
