@@ -1,5 +1,7 @@
 #!/bin/bash
 
+kubectl apply -f grafana.yaml
+
 user='admin'
 defpass='admin'
 pass='ZAQ!xsw2'

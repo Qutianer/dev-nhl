@@ -81,7 +81,11 @@ addon_profile.oms_agent.oms_agent_identity.
                       }
 Monitoring Metrics Publisher
 
+################################################## k8s network
 
-
-./queue.sh `jq ".be_dev_artifact_id" devops_vars.tfvars | tr -d '"'`
-
+Type (plugin) Kubenet
+Pod CIDR 10.244.0.0/16
+Service CIDR 10.0.0.0/16
+DNS service IP 10.0.0.10
+Docker bridge CIDR 172.17.0.1/16
+Network policy None

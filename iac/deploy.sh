@@ -15,17 +15,6 @@ pushd azureagent
 ./helm.sh
 popd
 
-./queue.sh `jq ".fe_dev" devops_vars.tfvars | tr -d '"'`
-./queue.sh `jq ".be_dev" devops_vars.tfvars | tr -d '"'`
-./queue.sh `jq ".helm_dev" devops_vars.tfvars | tr -d '"'`
-
-pushd ..
-#./trigger.sh front-end
-#./trigger.sh back-end
-#./trigger.sh helm
-#./comment.sh 'initial deploy'
-popd
-
 echo $dt
 date
 

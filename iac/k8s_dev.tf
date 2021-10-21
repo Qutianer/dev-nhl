@@ -19,10 +19,11 @@ resource "azurerm_kubernetes_cluster" "dev" {
   }
 
   network_profile {
-    network_plugin = "azure"
+    network_plugin = "kubenet"
     service_cidr = "10.100.1.0/24"
     dns_service_ip = "10.100.1.10"
-    docker_bridge_cidr = "10.100.2.1/24"
+    pod_cidr = "10.100.2.0/24"
+    docker_bridge_cidr = "10.100.3.1/24"
   }
 
   addon_profile {
