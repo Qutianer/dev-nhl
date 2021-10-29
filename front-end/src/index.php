@@ -5,7 +5,7 @@
 <!-- <script src="https://unpkg.com/vue@next"></script>  <!-- -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- -->
 <script src="chart.min.js"></script>
-<title>NHL Players stats</title>
+<title>NHL Players stats (next ver)</title>
 </head>
 <body>
 <table>
