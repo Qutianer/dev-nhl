@@ -9,4 +9,5 @@ IP - 14.6 type?? +2.92
 vault - 0.03
 peering - 4
 
+1340 rub
 resource merging

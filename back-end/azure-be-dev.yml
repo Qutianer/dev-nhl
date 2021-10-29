@@ -40,7 +40,7 @@ steps:
     SonarQube: 'sonar'
     scannerMode: 'CLI'
     configMode: 'manual'
-    cliProjectKey: 'nhl'
+    cliProjectKey: 'nhl-be'
     cliSources: './back-end'
 - script: |
     echo "$SONARQUBE_SCANNER_PARAMS"

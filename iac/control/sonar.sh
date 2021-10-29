@@ -36,7 +36,11 @@ curl -X POST -svu $user:$defpass "http://$server:9000/$api_func?$data"
 
 sleep 10
 
-data="name=nhl&project=nhl"
+data="name=nhl-fe&project=nhl-fe"
+api_func="api/projects/create"
+curl -X POST -svu $user:$pass "http://$server:9000/$api_func?$data"
+
+data="name=nhl-be&project=nhl-be"
 api_func="api/projects/create"
 curl -X POST -svu $user:$pass "http://$server:9000/$api_func?$data"
 
